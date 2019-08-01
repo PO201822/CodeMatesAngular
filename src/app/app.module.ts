@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginFormComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavigationBarComponent
   ],
   imports: [
     RouterModule.forRoot(
