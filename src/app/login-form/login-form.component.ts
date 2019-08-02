@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
   onSubmit() {
     let url = environment.apiUrl + '/auth/signin';
     this.http.post<any>(url, {
-      username: this.model.username,
+      name: this.model.username,
       password: this.model.password
   }).subscribe(res => this.onSuccessfulLogin(),
   error => this.handleError(error)); {
