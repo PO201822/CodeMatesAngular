@@ -10,8 +10,9 @@
         <label for="password">password</label>
         <input type="password" class="form-control" id="password" [(ngModel)] = "model.password" required [ngModelOptions]="{standalone: true}">
       </div>
- 
+      
       <button type="submit" (click) = "onSubmit()" >Submit</button>
- 
+      <hr>
+      <button type="submit" (click) = "onRegisterClicked()" >Registration</button>
     </form>
 </div>

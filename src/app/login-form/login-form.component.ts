@@ -19,6 +19,9 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     
 }
+onRegisterClicked(){
+  this.router.navigate(['registration']);
+}
 
   onSubmit() {
     let url = environment.apiUrl + '/auth/signin';
