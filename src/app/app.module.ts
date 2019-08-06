@@ -8,9 +8,13 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { HomeComponent } from './home/home.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 
+  { path: 'home', component: HomeComponent }, // Default for localhost:8080
+  { path: 'registration', component: RegistrationComponent }, // Default for localhost:8080  
   { path: '**', component: PageNotFoundComponent } // Page not found 404
 ];
 
@@ -19,7 +23,9 @@ const appRoutes: Routes = [
     AppComponent,
     LoginFormComponent,
     PageNotFoundComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    HomeComponent,
+    RegistrationComponent
   ],
   imports: [
     RouterModule.forRoot(
