@@ -16,7 +16,7 @@ export class NavigationBarComponent implements OnInit {
   onProfileClicked() {
     let url = environment.apiUrl + '/auth/signin';
     this.http.get<any>(url, {
-      name: this.model.username
+      //name: this.model.username
     }).subscribe(res => this.onSuccessfulProfile(),
       error => this.handleError(error)); {
     };
