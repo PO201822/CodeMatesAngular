@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -9,21 +8,22 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
-  model : any = {}
+  model: any = {}
 
 
   constructor(
-    private http : HttpClient,
+    private http: HttpClient,
     private router: Router
   ) { }
 
   ngOnInit() {
   }
 
-  onBackToRegisterClicked(){
-    this.router.navigate(['']);
+  onSubmitRegistrationClicked() {
+    this.router.navigate(['']); // POST REQUEST HERE
   }
 
-
-
+  onBackToLoginClicked() {
+    this.router.navigate(['']);
+  }
 }
