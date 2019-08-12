@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
@@ -20,7 +21,26 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmitRegistrationClicked() {
-    this.router.navigate(['']); // POST REQUEST HERE
+    let url = environment.apiUrl + '/register';
+    this.http.post<any>(url, {
+      name: this.model.name,
+      email: this.model.email,
+      password: this.model.password,
+      location: this.model.location,
+      address: this.model.address
+    }).subscribe(res => this.onSuccessRegistration(),
+      error => this.handleError(error)); {
+    };
+  }
+
+  onSuccessRegistration() {
+    console.log("onSuccessRegistration");
+
+  }
+
+  handleError(error) {
+    console.log("handleError");
+
   }
 
   onBackToLoginClicked() {
