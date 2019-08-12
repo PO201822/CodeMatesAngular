@@ -10,12 +10,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginFormComponent }, // Default for localhost:8080 
-  { path: 'home', component: HomeComponent }, // Default for localhost:8080
-  { path: 'registration', component: RegistrationComponent }, // Default for localhost:8080  
-  { path: '**', component: PageNotFoundComponent } // Page not found 404
+  { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
+  { path: 'home', component: HomeComponent }, 
+  { path: 'registration', component: RegistrationComponent }, 
+  { path: 'profile', component: ProfileComponent }, 
+  { path: '**', component: PageNotFoundComponent } // Default for unknown routing (404 Page not found)
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     NavigationBarComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule.forRoot(
