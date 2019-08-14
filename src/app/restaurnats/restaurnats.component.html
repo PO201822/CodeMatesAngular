@@ -1,0 +1,14 @@
+<div class="form-group">
+    <button (click)= "onUseSetLocationClicked()">Use set location</button>
+    <br>
+
+    <!-- <form>
+    <input type="text" class="form-control" id="location" [(ngModel)] = "location" required [ngModelOptions]="{standalone: true}"><br>
+        <button type="submit" >Use new location</button>
+    </form> -->
+    <ul>
+        <li *ngFor="let restaurant of restaurantModel">
+            {{ restaurant.name }}
+        </li>
+    </ul>
+</div>
