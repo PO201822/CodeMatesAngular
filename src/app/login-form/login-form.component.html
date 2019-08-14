@@ -11,8 +11,12 @@
         <input type="password" class="form-control" id="password" [(ngModel)] = "model.password" required [ngModelOptions]="{standalone: true}">
       </div>
       
-      <button type="button" class="btn btn-success" (click) = "onSubmit()" >Submit</button>
-      <hr>
+      <button type="button" class="btn btn-success mr-3" (click) = "onSubmit()" >Submit</button>
+
       <button type="button" class="btn btn-primary" (click) = "onRegisterClicked()" >Registration</button>
+      <br><br>
+      <div class="alert alert-danger" role="alert" *ngIf="isValidLogin == false">
+        Invalid username or password!
+      </div>
     </form>
 </div>
