@@ -11,8 +11,7 @@
     </div>
     <div class="form-group">
       <label for="password">password</label>
-      <input type="password" class="form-control" [(ngModel)]="model.password" required
-        [ngModelOptions]="{standalone: true}">
+      <input type="password" class="form-control" [(ngModel)]="model.password" required [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="location">location</label>
@@ -22,7 +21,7 @@
       <label for="address">address</label>
       <input type="text" class="form-control" [(ngModel)]="model.address" required [ngModelOptions]="{standalone: true}">
     </div>
-    <button type="button" class="btn btn-primary" (click)="onBackToLoginClicked()">Back to Login</button><hr>
-    <button type="button" class="btn btn-success" (click)="onSubmitRegistrationClicked()">Submit</button>
+    <button type="button" class="btn btn-success mr-3" (click)="onSubmitRegistrationClicked()">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="onBackToLoginClicked()">Back to Login</button>
   </form>
 </div>
