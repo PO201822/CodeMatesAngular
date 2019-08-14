@@ -18,20 +18,8 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  onProfileClicked() {
-    let url = environment.apiUrl + '/profile';
-    this.http.post<any>(url, {
-      token: this.cookie.get('token')
-    }).subscribe(res => this.onResponseReceived(res),
-      error => this.handleError(error)); {
-    };
-  }
-
-  onResponseReceived(res) {
-    console.log(this.cookie.get('token'));
-  }
-
   onLogoutClicked() {
+    this.cookie.deleteAll();
   }
 
   handleError(error) {
