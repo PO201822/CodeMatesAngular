@@ -13,6 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginFormComponent implements OnInit {
   private cookieValue: string;
   model : any = {}
+  private isValidLogin : boolean = true;
 
   constructor(
     private http : HttpClient,
@@ -38,13 +39,13 @@ onRegisterClicked(){
 }
 
   onSuccessfulLogin(res){
+    this.isValidLogin = true;
     this.cookie.set('token', JSON.stringify(res.token)),
     this.router.navigate(['home']);
   }
 
   handleError(error){
-
-
+    this.isValidLogin = false;
   }
 
 }
