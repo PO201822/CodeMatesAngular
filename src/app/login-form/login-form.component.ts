@@ -4,14 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
-
-
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent implements OnInit {
-  private cookieValue: string;
   model : any = {}
 
   constructor(
@@ -27,24 +24,22 @@ onRegisterClicked(){
   this.router.navigate(['registration']);
 }
 
-  onSubmit() {
-    let url = environment.apiUrl + '/auth/signin';
-    this.http.post<any>(url, {
-      name: this.model.username,
-      password: this.model.password
+onSubmit() {
+  let url = environment.apiUrl + '/auth/signin';
+  this.http.post<any>(url, {
+    name: this.model.username,
+    password: this.model.password
   }).subscribe(res => this.onSuccessfulLogin(res),
-  error => this.handleError(error)); {
+    error => this.handleError(error)); {
   };
 }
 
-  onSuccessfulLogin(res){
-    this.cookie.set('token', JSON.stringify(res.token)),
-    this.router.navigate(['home']);
-  }
+onSuccessfulLogin(res){
+  this.cookie.set('token', JSON.stringify(res.token)),
+  this.router.navigate(['home']);
+}
 
-  handleError(error){
-
-
-  }
+handleError(error){
+}
 
 }
