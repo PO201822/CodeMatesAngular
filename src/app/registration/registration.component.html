@@ -22,7 +22,7 @@
       <label for="address">address</label>
       <input type="text" class="form-control" [(ngModel)]="model.address" required [ngModelOptions]="{standalone: true}">
     </div>
-    <button type="button" (click)="onBackToLoginClicked()">Back to Login</button><hr>
-    <button type="button" (click)="onSubmitRegistrationClicked()">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="onBackToLoginClicked()">Back to Login</button><hr>
+    <button type="button" class="btn btn-success" (click)="onSubmitRegistrationClicked()">Submit</button>
   </form>
 </div>
