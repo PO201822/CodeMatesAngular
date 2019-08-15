@@ -31,7 +31,6 @@ export class RestaurnatsComponent implements OnInit {
     }).subscribe(res => this.onLocationRecieved(res),
       error => this.handleError(error)); {
     };
-    
   }
 
   onLocationRecieved(res){
@@ -45,8 +44,6 @@ export class RestaurnatsComponent implements OnInit {
 
   onRestaurantsBySetLocationResponse(res){
     this.restaurantModel = res;
-    console.log(res)
-    console.log("working");
   }
 
   onUseSetLocationClicked() {
@@ -54,10 +51,6 @@ export class RestaurnatsComponent implements OnInit {
     let params = new HttpParams().set("location", this.location);
     this.http.get(url, { params : params }).subscribe(res => this.onRestaurantsBySetLocationResponse(res),
   error => this.handleError(error)); { };
-  }
-
-  onUseNewLocationClicked(){
-
   }
 
 }

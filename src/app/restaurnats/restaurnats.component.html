@@ -2,10 +2,11 @@
     <button (click)= "onUseSetLocationClicked()">Use set location</button>
     <br>
 
-    <!-- <form>
+    <form>
     <input type="text" class="form-control" id="location" [(ngModel)] = "location" required [ngModelOptions]="{standalone: true}"><br>
-        <button type="submit" >Use new location</button>
-    </form> -->
+    <button (click)= "onUseSetLocationClicked()">Search</button>
+    </form>
+
     <ul>
         <li *ngFor="let restaurant of restaurantModel">
             {{ restaurant.name }}
