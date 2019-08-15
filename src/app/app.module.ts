@@ -12,14 +12,16 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CookieService } from 'ngx-cookie-service';
-import { RestaurnatsComponent } from './restaurnats/restaurnats.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
   { path: 'home', component: HomeComponent }, 
   { path: 'registration', component: RegistrationComponent }, 
   { path: 'profile', component: ProfileComponent }, 
-  { path: 'restaurants', component: RestaurnatsComponent }, 
+  { path: 'restaurants', component: RestaurantsComponent }, 
+  { path: 'restaurant/:id', component: RestaurantMenuComponent }, 
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
 ];
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     HomeComponent,
     RegistrationComponent,
     ProfileComponent,
-    RestaurnatsComponent,
+    RestaurantsComponent,
+    RestaurantMenuComponent,
   ],
   imports: [
     RouterModule.forRoot(
