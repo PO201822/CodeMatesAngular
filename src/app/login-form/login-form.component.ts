@@ -19,6 +19,9 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(this.cookie.get('token').length != 0){
+      this.router.navigate(['home']);
+    } 
     
 }
 onRegisterClicked(){
