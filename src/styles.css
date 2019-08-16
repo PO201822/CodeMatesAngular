@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: rgb(22, 27, 71);
+  }
+label {
+    color : white;
+}
+h1, h3 , li{
+    color: white;
+}
+.card-group{
+  
+}
