@@ -26,6 +26,10 @@ export class RestaurantMenuComponent implements OnInit {
     });
   }
 
+  onOrderClicked(){
+    this.router.navigate(['order']);
+  }
+
   handleError(error: any): void {
     console.log("not working");
   }
