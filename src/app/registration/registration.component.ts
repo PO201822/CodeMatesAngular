@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { SourceListMap } from 'source-list-map';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   model: any = {}
-
+  private showError : boolean = false;
+  private errorMessage : string;
 
   constructor(
     private http: HttpClient,
@@ -34,12 +36,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSuccessRegistration() {
+    this.showError = false;
     this.router.navigate(['']);
   }
 
   handleError(error) {
-    console.log("handleError");
-
+    this.showError = true;
+    this.errorMessage = "Error"; // TODO
   }
 
   onBackToLoginClicked() {
