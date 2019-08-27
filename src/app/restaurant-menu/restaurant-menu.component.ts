@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-restaurant-menu',
@@ -14,7 +15,7 @@ export class RestaurantMenuComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) { }
 
 
@@ -26,10 +27,18 @@ export class RestaurantMenuComponent implements OnInit {
     });
   }
 
-  onOrderClicked(){
-    this.activatedRoute.params.subscribe((parameters) => {
-    let params = new HttpParams().set("product_id", parameters.id)});
-    this.router.navigate(['order']);
+  onOrderClicked(id){
+    let url = environment.apiUrl + '/addToCart';
+    this.http.post<any>(url, {
+      product_id: id,
+    }).subscribe(res => this.onCartItemAdded(res),
+      error => this.handleError(error)); {
+    };
+    //this.router.navigate(['order']);
+  }
+
+  onCartItemAdded(res) {
+    console.log('success');
   }
 
   handleError(error: any): void {
