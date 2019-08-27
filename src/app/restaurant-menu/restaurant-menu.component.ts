@@ -27,6 +27,8 @@ export class RestaurantMenuComponent implements OnInit {
   }
 
   onOrderClicked(){
+    this.activatedRoute.params.subscribe((parameters) => {
+    let params = new HttpParams().set("product_id", parameters.id)});
     this.router.navigate(['order']);
   }
 
