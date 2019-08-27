@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -22,22 +23,19 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    let url = environment.apiUrl + '/profile';
-    this.http.post<any>(url, {
-      token: this.cookie.get('token')
-    }).subscribe(res => this.onResponseReceived(res),
-      error => this.handleError(error)); {
-    };
+    this.userService.getUser().subscribe(res => this.onResponseReceived(res),
+    error => this.handleError(error)); {
+  };
   }
 
   handleError(error: any): void {
     console.log(error);
-
-  }
+  } 
 
   onResponseReceived(res) {
     this.id = res.id;
@@ -47,7 +45,6 @@ export class ProfileComponent implements OnInit {
     this.location = res.location;
     this.address = res.address;
     this.roles = res.roles;
-
   }
 
   onUpdateClicked() {
@@ -66,8 +63,7 @@ export class ProfileComponent implements OnInit {
     }).subscribe(res => this.onProfileUpdateResponse(res),
       error => this.handleError(error)); {
     };
-    
-
+  
   }
   onProfileUpdateResponse(res: any): void {
     console.log('okcs');
