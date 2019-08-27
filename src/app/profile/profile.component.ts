@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(res => this.onResponseReceived(res),
-    error => this.handleError(error)); {
+    this.userService.getUser().subscribe((res: any) => this.onResponseReceived(res),
+      (error: any) => this.handleError(error)); {
   };
   }
 

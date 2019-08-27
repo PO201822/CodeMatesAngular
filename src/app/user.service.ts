@@ -16,9 +16,11 @@ export class UserService {
 
   getUser() : any {
     let url = environment.apiUrl + '/profile';
+    let resp =
     this.http.post<any>(url, {
       token: this.cookie.get('token')
     });
+    return resp;
   }
 
 }
