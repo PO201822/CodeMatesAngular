@@ -24,6 +24,7 @@ export class LoginFormComponent implements OnInit {
     } 
     
 }
+
 onRegisterClicked(){
   this.router.navigate(['registration']);
 }
