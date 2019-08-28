@@ -1,22 +1,29 @@
-<div class="container">
-    <h1>Login Form</h1>
-    <form>
-      <div class="form-group">
-        <label for="username">username</label>
-        <input type="text" class="form-control" id="username" [(ngModel)] = "model.username" required [ngModelOptions]="{standalone: true}">
-      </div>
- 
-      <div class="form-group">
-        <label for="password">password</label>
-        <input type="password" class="form-control" id="password" [(ngModel)] = "model.password" required [ngModelOptions]="{standalone: true}">
-      </div>
-      
-      <button type="button" class="btn btn-success mr-3" (click) = "onSubmit()" >Submit</button>
+<br>
+<br>
+<div class="container ">
+  <h1>Login Form</h1>
+  <form>
 
-      <button type="button" class="btn btn-primary" (click) = "onRegisterClicked()" >Registration</button>
-      <br><br>
-      <div class="alert alert-danger" role="alert" *ngIf="isValidLogin == false">
-        Invalid username or password!
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Username</span>
       </div>
-    </form>
+      <input type="text" class="form-control" id="username" [(ngModel)]="model.username" required
+        [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+      <input type="password" class="form-control" id="password" [(ngModel)]="model.password" required
+        [ngModelOptions]="{standalone: true}">
+    </div>
+    <button type="button" class="btn btn-success mr-3" (click)="onSubmit()">Submit</button>
+
+    <button type="button" class="btn btn-primary" (click)="onRegisterClicked()">Registration</button>
+    <br><br>
+    <div class="alert alert-danger" role="alert" *ngIf="isValidLogin == false">
+      Invalid username or password!
+    </div>
+  </form>
 </div>
