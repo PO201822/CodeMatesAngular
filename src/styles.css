@@ -8,6 +8,7 @@ label {
 h1, h3 , li{
     color: white;
 }
-.card-group{
-  
+.center{
+  display: flex;
+  justify-content: center;
 }
