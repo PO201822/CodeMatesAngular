@@ -1,4 +1,4 @@
-<div class= "container">
+<div class= "container" *ngIf = "dto != null">
 <table class="table table-striped">
     <thead >
       <tr>
@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let p of products; let i = index">
+      <tr *ngFor = "let p of dto; let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{ p.products.name }}</td>
         <td>{{ p.quantity }}</td>
@@ -18,4 +18,7 @@
       </tr>
     </tbody>
   </table>
+  <button type="button" class="btn btn-success mr-3" (click)="onCheckoutCartClicked(token)">Order</button>
 </div>
+<h1 *ngIf= "dto == null">Your cart is empty</h1>
+
