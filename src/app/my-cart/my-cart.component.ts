@@ -25,7 +25,7 @@ export class MyCartComponent implements OnInit {
 
   }
   onMyCartResponse(res: Object): void {
-    console.log(res);
+    this.products = res;
   }
 
   handleError(error: any): void {
