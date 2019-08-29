@@ -1,1 +1,17 @@
-<p>my-cart works!</p>
+<table class="table table-striped">
+    <thead >
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let p of products; let i = index">
+        <th scope="row">i+1</th>
+        <td>{{ JSON.stringify(p.product.name) }}</td>
+      </tr>
+    
+    </tbody>
+  </table>
