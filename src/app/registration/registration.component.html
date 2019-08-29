@@ -1,26 +1,47 @@
+<br>
+<br>
+
 <div class="container">
   <h1>Registration Form</h1>
   <form>
-    <div class="form-group">
-      <label for="name">name</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Username</span>
+      </div>
       <input type="text" class="form-control" [(ngModel)]="model.name" required [ngModelOptions]="{standalone: true}">
     </div>
-    <div class="form-group">
-      <label for="email">email</label>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
       <input type="text" class="form-control" [(ngModel)]="model.email" required [ngModelOptions]="{standalone: true}">
     </div>
-    <div class="form-group">
-      <label for="password">password</label>
-      <input type="password" class="form-control" [(ngModel)]="model.password" required [ngModelOptions]="{standalone: true}">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+      </div>
+      <input type="password" class="form-control" [(ngModel)]="model.password" required
+        [ngModelOptions]="{standalone: true}">
     </div>
-    <div class="form-group">
-      <label for="location">location</label>
-      <input type="text" class="form-control" [(ngModel)]="model.location" required [ngModelOptions]="{standalone: true}">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">location</span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="model.location" required
+        [ngModelOptions]="{standalone: true}">
     </div>
-    <div class="form-group">
-      <label for="address">address</label>
-      <input type="text" class="form-control" [(ngModel)]="model.address" required [ngModelOptions]="{standalone: true}">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Address</span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="model.address" required
+        [ngModelOptions]="{standalone: true}">
     </div>
+
     <button type="button" class="btn btn-success mr-3" (click)="onSubmitRegistrationClicked()">Submit</button>
     <button type="button" class="btn btn-primary" (click)="onBackToLoginClicked()">Back to Login</button>
 
