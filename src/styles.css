@@ -12,3 +12,7 @@ h1, h3 , li, tr, td{
   display: flex;
   justify-content: center;
 }
+
+ul{
+  list-style-type: none;
+}

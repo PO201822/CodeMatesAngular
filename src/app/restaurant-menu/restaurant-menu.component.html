@@ -1,6 +1,6 @@
 <div class="form-group center">
   <ul>
-      <li *ngFor="let product of arr; let i = index" [ngClass]="{'list-inline-item': i%3!=0 || i==0, '': i%3==0 && i!=0}">
+      <li *ngFor="let product of arr; let i = index" [ngClass]="{'list-inline-item clean-li': i%3!=0 || i==0, 'clean-li': i%3==0 && i!=0}">
           <div class="card-group mr-5">
         <div class="bg-primary">
           <img class="card-img-top" src="{{ product.picture}}" class="rounded mx-auto d-block" width="300px"
