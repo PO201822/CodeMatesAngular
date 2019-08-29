@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -10,7 +9,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MyCartComponent implements OnInit {
 
-  products : any;
+  dto : any;
+  cart: any;
 
 
   constructor(private http : HttpClient,
@@ -21,15 +21,27 @@ export class MyCartComponent implements OnInit {
       let params = new HttpParams().set("token", this.cookie.get('token'));
       this.http.get(url, { params : params }).subscribe(res => this.onMyCartResponse(res),
     error => this.handleError(error)); { };
-    
-
+  
   }
   onMyCartResponse(res: Object): void {
-    this.products = res;
+    this.dto = res;
   }
 
   handleError(error: any): void {
     console.log('nem lyo');
+  }
+
+  onCheckoutCartClicked(currentCart){
+    let url = environment.apiUrl + '/checkout';
+    this.http.put<any>(url, {
+      token : this.cookie.get("token")}).subscribe(res => this.onSuccessfullcheckout(),
+      error => this.handleError(error)); {
+    };
+
+  }
+
+  onSuccessfullcheckout(){
+    this.ngOnInit();
   }
 
 }
