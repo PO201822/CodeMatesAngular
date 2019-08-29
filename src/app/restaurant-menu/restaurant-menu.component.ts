@@ -36,7 +36,6 @@ export class RestaurantMenuComponent implements OnInit {
   onOrderClicked(id, orderedQuantity, name){
     this.showMessage = true;
     this. message = orderedQuantity + ' of ' + name +'(s) added to cart.';
-    let inputValue = (<HTMLInputElement>document.getElementById('orderedQuantity')).setAttribute('value','1');
 
     let url = environment.apiUrl + '/addToCart';
     this.http.post<any>(url, {
