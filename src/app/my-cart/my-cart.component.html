@@ -1,17 +1,21 @@
+<div class= "container">
 <table class="table table-striped">
     <thead >
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor = "let p of products; let i = index">
-        <th scope="row">i+1</th>
-        <td>{{ JSON.stringify(p.product.name) }}</td>
+        <th scope="row">{{i+1}}</th>
+        <td>{{ p.products.name }}</td>
+        <td>{{ p.quantity }}</td>
+        <td>{{ p.products.price * p.quantity }}</td>
+
       </tr>
-    
     </tbody>
   </table>
+</div>
