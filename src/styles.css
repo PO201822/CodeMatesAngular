@@ -5,7 +5,7 @@ body {
 label {
     color : white;
 }
-h1, h3 , li{
+h1, h3 , li, tr, td{
     color: white;
 }
 .center{
