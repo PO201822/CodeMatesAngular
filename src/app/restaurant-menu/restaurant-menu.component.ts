@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { UserService } from '../user.service';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-restaurant-menu',
@@ -11,11 +12,13 @@ import { UserService } from '../user.service';
 export class RestaurantMenuComponent implements OnInit {
 
   arr : any[] = [];
+  quantity : number = 1;
   
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private cookie : CookieService,
   ) { }
 
 
@@ -30,7 +33,9 @@ export class RestaurantMenuComponent implements OnInit {
   onOrderClicked(id){
     let url = environment.apiUrl + '/addToCart';
     this.http.post<any>(url, {
-      product_id: id,
+      productId: id,
+      token : this.cookie.get('token'),
+      quantity : this.quantity
     }).subscribe(res => this.onCartItemAdded(res),
       error => this.handleError(error)); {
     };
