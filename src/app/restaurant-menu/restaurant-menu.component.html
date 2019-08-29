@@ -1,36 +1,31 @@
-<div class="form-group">
+<div class="form-group center">
+  <ul>
+      <li *ngFor="let product of arr; let i = index" [ngClass]="{'list-inline-item': i%3!=0 || i==0, '': i%3==0 && i!=0}">
+          <div class="card-group mr-5">
+        <div class="bg-primary">
+          <img class="card-img-top" src="{{ product.picture}}" class="rounded mx-auto d-block" width="300px"
+            height="300px">
+          <div class="card-body">
+            <h3 class="card-title">{{ product.name }}</h3>
+            <h5 class="card-text">{{ product.description }}</h5>
+            <h5 class="card-text">{{ product.price }} Ft</h5>
 
-    <ul>
-        <li *ngFor="let product of arr">
-        <div class="card-group">
-            <div class="bg-primary">
-                <img class="card-img-top" src = "{{ product.picture}}" class="rounded mx-auto d-block" width="300px" height="300px">
-                <div class="card-body">
-                  <h3 class="card-title">{{ product.name }}</h3>
-                  <h5 class="card-text">{{ product.description }}</h5>
-                  <h5 class="card-text">{{ product.price }} Ft</h5>
+            <span *ngIf="product.category == 'entree'" class="badge badge-pill badge-warning">Entree</span>
+            <span *ngIf="product.category == 'appetizer'" class="badge badge-pill badge-warning">Appetizer</span>
+            <span *ngIf="product.category == 'dessert'" class="badge badge-pill badge-warning">Dessert</span>
 
-                  <span *ngIf = "product.category == 'entree'" class="badge badge-pill badge-warning">Entree</span>
-                  <span *ngIf = "product.category == 'appetizer'" class="badge badge-pill badge-warning">Appetizer</span>
-                  <span *ngIf = "product.category == 'dessert'" class="badge badge-pill badge-warning">Dessert</span>
+          </div>
+          <div class="card-footer text-white">
+            X
+            <input class="btn btn-light mr-3" type="number" value="1" min="1" max="10" [(ngModel)]="quantity" />
 
+            <button type="button" class="btn btn-success mr-3" (click)="onOrderClicked(product.id)">Order</button>
 
-                </div>
-                <div class="card-footer text-white">
-                    X
-                <input class="btn btn-light mr-3" type="number" value="1" min="1" max="10" [(ngModel)]= "quantity"/>
-
-                <button type="button" class="btn btn-success mr-3" (click)="onOrderClicked(product.id)" >Order</button>
-
-                </div>
-              </div>
+          </div>
         </div>
-        <br>
-        <br>
-        </li>
-    </ul>
-
-
-
-
+      </div>
+      <br>
+      <br>
+    </li>
+  </ul>
 </div>
