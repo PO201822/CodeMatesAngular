@@ -16,6 +16,9 @@ export class ProfileComponent implements OnInit {
   location: string = 'location';
   address: string = 'address';
 
+  message: string = '';
+  showMessage: boolean;
+
   constructor(
     private http: HttpClient,
     private cookie: CookieService,
@@ -23,6 +26,7 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.showMessage= false;
     this.userService.getUser().subscribe((res: any) => this.onResponseReceived(res),
       (error: any) => this.handleError(error)); {
   };
@@ -41,6 +45,9 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpdateClicked() {
+    this.showMessage = true;
+    this.message = "Profile updated.";
+
     let url = environment.apiUrl + '/profile';
     this.http.put<any>(url, {
       name : this.username,
