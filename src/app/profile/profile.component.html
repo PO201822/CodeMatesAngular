@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Username</span>
             </div>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" required
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" required readonly
                 [ngModelOptions]="{standalone: true}">
         </div>
 
@@ -22,7 +22,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
             </div>
-            <input type="text" class="form-control" id="email" [(ngModel)]="email" required readonly
+            <input type="text" class="form-control" id="email" [(ngModel)]="email" required 
                 [ngModelOptions]="{standalone: true}">
         </div>
 
