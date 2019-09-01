@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -21,6 +21,7 @@ export class RestaurantMenuComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private cookie : CookieService,
+    private renderer :Renderer2
   ) { }
 
 
@@ -33,9 +34,12 @@ export class RestaurantMenuComponent implements OnInit {
     });
   }
 
-  onOrderClicked(id, orderedQuantity, name){
+  onOrderClicked(id, name, inputEl){
+    const orderedQuantity = inputEl.value;
     this.showMessage = true;
+
     this. message = orderedQuantity + ' of ' + name +'(s) added to cart.';
+    this.renderer.setProperty(inputEl,'value','1');
 
     let url = environment.apiUrl + '/addToCart';
     this.http.post<any>(url, {
@@ -57,7 +61,6 @@ export class RestaurantMenuComponent implements OnInit {
 
   onLoadMenuResponse(res){
     this.arr = res;
-    console.log(JSON.stringify(res));
   }
 
 }
