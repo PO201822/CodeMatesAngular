@@ -13,8 +13,26 @@
     </div>
   </div>
 </form>
-<ul>
+<br>
+<br>
+<ul class="container">
   <li *ngFor="let restaurant of restaurantModel">
-    <button class="btn btn-primary" routerLink="/restaurant/{{ restaurant.id }}">{{ restaurant.name }}</button>
+    <div class="card mb-4 text-black bg-light">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img width="250px" height="250px" src="{{restaurant.picture}}" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <a class="card-title text-black" routerLink="/restaurant/{{ restaurant.id }}">
+              <h2>{{restaurant.name}}</h2>
+            </a>
+            <p class="card-text text-black">This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.</p>
+            <p class="card-text text-black"><i>{{restaurant.location}}</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </li>
 </ul>
