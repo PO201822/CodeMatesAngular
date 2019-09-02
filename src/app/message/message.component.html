@@ -1,0 +1,13 @@
+<br>
+<br>
+<div class="container" [ngSwitch]="messageService.type">
+    <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+        <i class="fas fa-check-circle"></i> {{messageService.message}}
+    </div>
+    <div *ngSwitchCase="'danger'" class="alert alert-danger" role="alert">
+        <i class="fas fa-times-circle"></i> {{messageService.message}}
+    </div>
+    <div *ngSwitchCase="'info'" class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle"></i> {{messageService.message}}
+    </div>
+</div>
