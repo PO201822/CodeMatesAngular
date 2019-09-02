@@ -1,2 +1,3 @@
 <app-navigation-bar *ngIf = "!isCookieSet()"></app-navigation-bar>
 <router-outlet></router-outlet>
+<app-message *ngIf="messageService.isMessageShown"></app-message>
