@@ -16,6 +16,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { OrderComponent } from './order/order.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     RestaurantMenuComponent,
     OrderComponent,
     MyCartComponent,
+    MessageComponent,
   ],
   imports: [
     RouterModule.forRoot(
