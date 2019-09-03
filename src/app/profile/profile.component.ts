@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
+import { MessageService } from '../services/message.service';
 
 
 @Component({
@@ -16,25 +17,27 @@ export class ProfileComponent implements OnInit {
   location: string = 'location';
   address: string = 'address';
 
-  message: string = '';
-  showMessage: boolean;
-
   constructor(
     private http: HttpClient,
     private cookie: CookieService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
-    this.showMessage= false;
+    Promise.resolve(null).then(() => this.messageService.hideMessage());
+    this.setProfileFields();
+  }
+
+  setProfileFields(){
     this.userService.getUser().subscribe((res: any) => this.onResponseReceived(res),
       (error: any) => this.handleError(error)); {
-  };
+    };
   }
 
   handleError(error: any): void {
-    console.log(error);
-  } 
+    this.messageService.showMessage("Profile data can'b be loaded!", "danger");
+  }
 
   onResponseReceived(res) {
     this.username = res.name;
@@ -45,23 +48,34 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpdateClicked() {
-    this.showMessage = true;
-    this.message = "Profile updated.";
+    if (!this.userService.isInputValid([this.address, this.password, this.email, this.location])) {
+      this.messageService.showMessage("Every input field is required!", "danger");
+      return;
+    }
 
     let url = environment.apiUrl + '/profile';
     this.http.put<any>(url, {
-      name : this.username,
-      password : this.password,
-      email : this.email,
-      location : this.location,
-      address : this.address
+      name: this.username,
+      password: this.password,
+      email: this.email,
+      location: this.location,
+      address: this.address
     }).subscribe(res => this.onProfileUpdateResponse(res),
-      error => this.handleError(error)); {
+      error => this.handleUpdateError()); {
     };
-  
+
   }
   onProfileUpdateResponse(res: any): void {
-    console.log('okcs');
+    this.messageService.showMessage("Profile updated successfuly.", "success");
+  }
+
+  handleUpdateError() {
+    this.messageService.showMessage("Invalid email address! New email address must be unique!", "danger");
+  }
+
+  onCancelClicked(){
+    this.setProfileFields();
+    this.messageService.showMessage("Changes were reverted.","info");
   }
 
 }

@@ -1,6 +1,6 @@
-<div class= "container" *ngIf = "dto != null">
-<table class="table table-striped">
-    <thead >
+<div class="container" *ngIf="cart != null">
+  <table class="table table-striped">
+    <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
@@ -9,16 +9,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let p of dto; let i = index">
+      <tr *ngFor="let product of cart; let i = index">
         <th scope="row">{{i+1}}</th>
-        <td>{{ p.products.name }}</td>
-        <td>{{ p.quantity }}</td>
-        <td>{{ p.products.price * p.quantity }}</td>
+        <td>{{ product.products.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.products.price * product.quantity }}</td>
 
       </tr>
     </tbody>
   </table>
   <button type="button" class="btn btn-success mr-3" (click)="onCheckoutCartClicked(token)">Order</button>
 </div>
-<h1 *ngIf= "dto == null">Your cart is empty</h1>
-

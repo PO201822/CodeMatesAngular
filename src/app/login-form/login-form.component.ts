@@ -3,22 +3,24 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
+  templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent implements OnInit {
   model : any = {}
-  private isValidLogin : boolean = true;
 
   constructor(
     private http : HttpClient,
     private router: Router,
-    private cookie: CookieService
+    private cookie: CookieService,
+    private messageService : MessageService
   ) { }
 
   ngOnInit() {
+    Promise.resolve(null).then(() => this.messageService.hideMessage());
     if(this.cookie.get('token').length != 0){
       this.router.navigate(['home']);
     } 
@@ -41,13 +43,14 @@ onSubmit() {
 
 
   onSuccessfulLogin(res){
-    this.isValidLogin = true;
+    this.messageService.hideMessage();
     this.cookie.set('token', JSON.stringify(res.token)),
     this.router.navigate(['home']);
   }
 
   handleError(error){
-    this.isValidLogin = false;
+    console.log(error);
+    this.messageService.showMessage('Invalid username or password!','danger');
   }
 
 }
