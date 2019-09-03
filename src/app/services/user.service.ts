@@ -23,4 +23,12 @@ export class UserService {
     return resp;
   }
 
+  isInputValid(arr) {
+    for (let element of arr) {
+      if (element == '') {
+        return false;
+      }
+    }
+    return true;
+  }
 }
