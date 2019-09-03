@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { SourceListMap } from 'source-list-map';
+import { Router } from '@angular/router';
+import { MessageService } from '../services/message.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -10,39 +11,51 @@ import { SourceListMap } from 'source-list-map';
   templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
-  model: any = {}
-  private showError : boolean = false;
-  private errorMessage : string;
+  name: string = '';
+  password: string = '';
+  email: string = '';
+  location: string = '';
+  address: string = '';
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    Promise.resolve(null).then(() => this.messageService.hideMessage());
   }
 
   onSubmitRegistrationClicked() {
+    if (!this.userService.isInputValid([this.name,
+        this.password,
+        this.email,
+        this.location,
+        this.address])) {
+      this.messageService.showMessage("Every input field is required!", "danger");
+      return;
+    }
+
     let url = environment.apiUrl + '/register';
     this.http.post<any>(url, {
-      name: this.model.name,
-      email: this.model.email,
-      password: this.model.password,
-      location: this.model.location,
-      address: this.model.address
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      location: this.location,
+      address: this.address
     }).subscribe(res => this.onSuccessRegistration(),
-      error => this.handleError(error)); {
+      error => this.handleError()); {
     };
   }
 
   onSuccessRegistration() {
-    this.showError = false;
     this.router.navigate(['']);
   }
 
-  handleError(error) {
-    this.showError = true;
-    this.errorMessage = "Error"; // TODO
+  handleError() {
+    this.messageService.showMessage("Email and/or username already exists!", "danger");
   }
 
   onBackToLoginClicked() {
