@@ -9,14 +9,14 @@
         [ngModelOptions]="{standalone: true}"><br>
     </div>
     <div class="col text-center">
-      <button (click)="onUseSetLocationClicked()" class="btn btn-primary btn-lg"><i class="fas fa-search"></i> Search</button>
+      <button (click)="onSearchByLocationClicked()" class="btn btn-primary btn-lg"><i class="fas fa-search"></i> Search</button>
     </div>
   </div>
 </form>
 <br>
 <br>
 <ul class="container">
-  <li *ngFor="let restaurant of restaurantModel">
+  <li *ngFor="let restaurant of restaurants">
     <div class="card mb-4 text-black bg-light">
       <div class="row no-gutters">
         <div class="col-md-4">
