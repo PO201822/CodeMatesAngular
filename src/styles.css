@@ -20,6 +20,10 @@ ul{
   color:black;
 }
 
+h1 {
+  font-size: 50px;
+}
+
 a {
   font-size: 24px;
 }
@@ -28,6 +32,22 @@ p {
   font-size: 20px;
 }
 
+.badge-md {
+  font-size: 16px;
+}
+
 .alert-icon + p {
   display: inline;
 } 
+
+input[type="text"]
+{
+    font-size:22px;
+}
+
+
+input[type="password"]
+{
+    font-size:22px;
+}
+
