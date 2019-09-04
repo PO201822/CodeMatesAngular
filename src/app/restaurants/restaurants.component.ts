@@ -36,6 +36,7 @@ export class RestaurantsComponent implements OnInit {
 
   onLocationRecieved(res) {
     this.location = res.location;
+    this.onSearchByLocationClicked();
   }
 
   handleError(error: any): void {
