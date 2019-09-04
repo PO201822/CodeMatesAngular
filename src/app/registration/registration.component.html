@@ -6,44 +6,46 @@
   <form>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Username</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user fa-lg"></i></span>
       </div>
-      <input type="text" class="form-control" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}">
+      <input type="text" class="form-control" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}"
+      placeholder="username">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">@</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope fa-lg"></i></span>
       </div>
-      <input type="text" class="form-control" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
+      <input type="text" class="form-control" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}"
+      placeholder="email">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Password</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock fa-lg"></i></span>
       </div>
       <input type="password" class="form-control" [(ngModel)]="password" required
-        [ngModelOptions]="{standalone: true}">
+        [ngModelOptions]="{standalone: true}" placeholder="**********">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">location</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker fa-lg"></i></span>
       </div>
       <input type="text" class="form-control" [(ngModel)]="location" required
-        [ngModelOptions]="{standalone: true}">
+        [ngModelOptions]="{standalone: true}" placeholder="location">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Address</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-home fa-lg"></i></span>
       </div>
       <input type="text" class="form-control" [(ngModel)]="address" required
-        [ngModelOptions]="{standalone: true}">
+        [ngModelOptions]="{standalone: true}" placeholder="address">
     </div>
 
-    <button type="button" class="btn btn-success mr-3" (click)="onSubmitRegistrationClicked()"><i class="fas fa-user-edit"></i>  Submit</button>
-    <button type="button" class="btn btn-primary" (click)="onBackToLoginClicked()"><i class="fas fa-user"></i> Back to Login</button>
+    <button type="button" class="btn btn-success mr-3 btn-lg" (click)="onSubmitRegistrationClicked()"><i class="fas fa-user-edit"></i>  Submit</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="onBackToLoginClicked()"><i class="fas fa-user"></i> Back to Login</button>
 
   </form>
 </div>

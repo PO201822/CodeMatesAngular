@@ -6,20 +6,20 @@
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Username</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user fa-lg"></i></span>
       </div>
       <input type="text" class="form-control" id="username" [(ngModel)]="model.username" required
-        [ngModelOptions]="{standalone: true}">
+        [ngModelOptions]="{standalone: true}" placeholder="username">
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">Password</span>
+        <span class="input-group-text" id="basic-addon1"> <i class="fa fa-lock fa-lg"></i> </span>
       </div>
       <input type="password" class="form-control" id="password" [(ngModel)]="model.password" required
-        [ngModelOptions]="{standalone: true}">
+        [ngModelOptions]="{standalone: true}" placeholder="**********">
     </div>
-    <button type="button" class="btn btn-success mr-3" (click)="onSubmit()"><i class="fas fa-user"></i> Log In</button>
+    <button type="button" class="btn btn-success mr-3 btn-lg" (click)="onSubmit()"><i class="fas fa-user"></i> Log In</button>
 
-    <button type="button" class="btn btn-primary" (click)="onRegisterClicked()"><i class="fas fa-user-plus"></i> Registration</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="onRegisterClicked()"><i class="fas fa-user-plus"></i> Registration</button>
   </form>
 </div>
