@@ -27,3 +27,7 @@ a {
 p {
   font-size: 20px;
 }
+
+.alert-icon + p {
+  display: inline;
+} 
