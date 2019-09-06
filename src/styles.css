@@ -45,9 +45,16 @@ input[type="text"]
     font-size:22px;
 }
 
+input[type="number"]
+{
+    font-size:22px;
+}
 
 input[type="password"]
 {
     font-size:22px;
 }
 
+.sticky-offset {
+  top: 85px;
+}
