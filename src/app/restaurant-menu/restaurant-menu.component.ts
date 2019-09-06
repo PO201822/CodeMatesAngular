@@ -12,9 +12,11 @@ import { CookieService } from 'ngx-cookie-service';
 export class RestaurantMenuComponent implements OnInit {
   message: string = 'Cart Updated.';
   showMessage: boolean;
-  orderedQuantity: string; 
+  orderedQuantity: string;
+  orderedName: string;
+  restaurant : any = {};
 
-  arr : any[] = [];
+  menuItems : any[] = [];
   
   constructor(
     private http: HttpClient,
@@ -34,25 +36,26 @@ export class RestaurantMenuComponent implements OnInit {
     });
   }
 
-  onOrderClicked(id, name, inputEl){
-    const orderedQuantity = inputEl.value;
-    this.showMessage = true;
-
-    this. message = orderedQuantity + ' of ' + name +'(s) added to cart.';
+  onAddToCartClicked(id, name, inputEl){
+    this.orderedQuantity = inputEl.value;
+    this.orderedName = name;
+    
     this.renderer.setProperty(inputEl,'value','1');
 
     let url = environment.apiUrl + '/addToCart';
     this.http.post<any>(url, {
       productId: id,
       token : this.cookie.get('token'),
-      quantity : orderedQuantity
-    }).subscribe(res => this.onCartItemAdded(res),
+      quantity : this.orderedQuantity
+    }).subscribe(res => this.onAddToCartResponse(),
       error => this.handleError(error)); {
     };
     //this.router.navigate(['order']);
   }
 
-  onCartItemAdded(res) {
+  onAddToCartResponse() {
+    this.showMessage = true;
+    this. message = this.orderedQuantity + ' of ' + this.orderedName +'(s) added to cart.';
   }
 
   handleError(error: any): void {
@@ -60,7 +63,9 @@ export class RestaurantMenuComponent implements OnInit {
   }
 
   onLoadMenuResponse(res){
-    this.arr = res;
+    console.log(res);
+    this.restaurant = res.restaurant;
+    this.menuItems = res.products;
   }
 
 }
