@@ -37,7 +37,7 @@ export class MyCartComponent implements OnInit {
     console.log('nem lyo');
   }
 
-  onCheckoutCartClicked(currentCart) {
+  onCheckoutCartClicked() {
     let url = environment.apiUrl + '/checkout';
     this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
       error => this.handleError(error)); {
