@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +18,7 @@ export class LoginFormComponent implements OnInit {
     private http : HttpClient,
     private router: Router,
     private cookie: CookieService,
-    private messageService : MessageService
+    private messageService : MessageService,
   ) { }
 
   ngOnInit() {
@@ -35,8 +37,7 @@ onSubmit() {
   let url = environment.apiUrl + '/auth/signin';
   this.http.post<any>(url, {
     name: this.model.username,
-    password: this.model.password
-  }).subscribe(res => this.onSuccessfulLogin(res),
+    password: this.model.password}).subscribe(res => this.onSuccessfulLogin(res),
     error => this.handleError(error)); {
   };
 }
@@ -44,7 +45,7 @@ onSubmit() {
 
   onSuccessfulLogin(res){
     this.messageService.hideMessage();
-    this.cookie.set('token', JSON.stringify(res.token)),
+    this.cookie.set('token', res.token),
     this.router.navigate(['home']);
   }
 
