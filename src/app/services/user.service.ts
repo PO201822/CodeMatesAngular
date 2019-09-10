@@ -15,14 +15,11 @@ export class UserService {
   ) { }
 
   getUser() : any {
-    let options = {
-      headers :  new HttpHeaders().set("Authorization", "Bearer " + this.cookie.get("token"))
-    }
     let url = environment.apiUrl + '/profile';
     let resp =
     this.http.post<any>(url, {
       token: this.cookie.get('token')
-    }, options);
+    });
     return resp;
   }
 
