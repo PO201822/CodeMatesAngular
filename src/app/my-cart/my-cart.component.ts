@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MessageService } from '../services/message.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-my-cart',
@@ -9,11 +10,12 @@ import { MessageService } from '../services/message.service';
 })
 export class MyCartComponent implements OnInit {
 
-  cart: any = null;
-
+  cartItems: any = null;
+  totalPrice: number = 0;
 
   constructor(private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private cartService: CartService) { }
 
   ngOnInit() {
     Promise.resolve(null).then(() => this.messageService.hideMessage());
@@ -27,14 +29,17 @@ export class MyCartComponent implements OnInit {
   }
 
   onMyCartResponse(res) {
-    this.cart = res;
-    if (this.cart == null){
-      this.messageService.showMessage("Your cart is empty!","info");
+    this.cartItems = res;
+    if (this.cartItems == null) {
+      this.messageService.showMessage("Your cart is empty!", "info");
+    }
+    else {
+      this.totalPrice = this.cartService.calculateTotalPrice(this.cartItems);
     }
   }
 
   handleError(error: any): void {
-    console.log('nem lyo');
+    console.log(error);
   }
 
   onCheckoutCartClicked() {
@@ -42,11 +47,10 @@ export class MyCartComponent implements OnInit {
     this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
       error => this.handleError(error)); {
     };
-
   }
 
   onSuccessfullcheckout() {
-    this.cart = null;
+    this.cartItems = null;
     this.messageService.showMessage("Thank you for your order! " +
       "You have nothing left to do, be patient until the delivery is complete.",
       "success");
@@ -55,15 +59,27 @@ export class MyCartComponent implements OnInit {
   onDeleteItemClicked(productId) {
     let url = environment.apiUrl + '/deleteItem';
     let params = new HttpParams().set("productId", productId);
-    this.http.delete(url, { params: params }).subscribe(res => this.onDeleteItemResponse(res),
+    this.http.delete(url, { params: params }).subscribe(res => this.getMyCart(),
       error => this.handleError(error)); { };
 
   }
 
-  onDeleteItemResponse(res){
-    console.log('jo');
-    this.getMyCart();
-  }
+  updateQuantity(cartItemId, mathOperator, quantityInput) {
+    this.messageService.hideMessage();
 
+    let quantity = this.cartService.calculateCartItemQuantity(quantityInput, mathOperator);
+    if (quantity > 10 || quantity < 1) {
+      this.messageService.showMessage("Quantity must be between 1 and 10!", "danger");
+      return;
+    }
+
+    let url = environment.apiUrl + '/updateCartItemQuantity';
+    this.http.put<any>(url, {
+      cartItemId: cartItemId,
+      quantity: quantity
+    }).subscribe(res => this.getMyCart(),
+      error => this.handleError(error)); {
+    };
+  }
 
 }
