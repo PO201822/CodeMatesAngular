@@ -1,4 +1,4 @@
-<div class="container" *ngIf="cart != null">
+<div class="container" *ngIf="cartItems != null">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -9,14 +9,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of cart; let i = index">
+      <tr *ngFor="let cartItem of cartItems; let i = index">
         <th scope="row">{{i+1}}</th>
-        <td>{{ product.products.name }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ product.products.price * product.quantity }}</td>
-        <button (click)="onDeleteItemClicked(product.products.id)">x</button>
+        <td>{{ cartItem.product.name }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="updateQuantity(cartItem.id, '-', cartItem.quantity)">
+            <i class="fas fa-minus"></i>
+          </button>
+            {{ cartItem.quantity }}
+          <button class="btn btn-success" (click)="updateQuantity(cartItem.id, '+', cartItem.quantity)">
+            <i class="fas fa-plus"></i>
+          </button>
+        </td>
+        <td>{{ cartItem.price * cartItem.quantity}}</td>
+        <button (click)="onDeleteItemClicked(cartItem.product.id)">x</button>
       </tr>
     </tbody>
   </table>
+  <hr>
+  <h1>Total : {{totalPrice}}</h1>
   <button type="button" class="btn btn-success mr-3 btn-lg" (click)="onCheckoutCartClicked()">Order</button>
 </div>
