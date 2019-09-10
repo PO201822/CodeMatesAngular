@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
   }
 
   handleError(error: any): void {
-    this.messageService.showMessage("Profile data can'b be loaded!", "danger");
+    this.messageService.showMessage("Profile data can't be loaded!", "danger");
   }
 
   onResponseReceived(res) {
