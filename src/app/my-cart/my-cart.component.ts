@@ -57,4 +57,18 @@ export class MyCartComponent implements OnInit {
       "success");
   }
 
+  onDeleteItemClicked(productId) {
+    let url = environment.apiUrl + '/deleteItem';
+    let params = new HttpParams().set("token", this.cookie.get('token')).set("productId", productId);
+    this.http.delete(url, { params: params }).subscribe(res => this.onDeleteItemResponse(res),
+      error => this.handleError(error)); { };
+
+  }
+
+  onDeleteItemResponse(res){
+    console.log('jo');
+    this.getMyCart();
+  }
+
+
 }

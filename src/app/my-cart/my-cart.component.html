@@ -14,7 +14,7 @@
         <td>{{ product.products.name }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.products.price * product.quantity }}</td>
-
+        <button (click)="onDeleteItemClicked(product.products.id)">x</button>
       </tr>
     </tbody>
   </table>
