@@ -45,7 +45,6 @@ export class RestaurantMenuComponent implements OnInit {
     let url = environment.apiUrl + '/addToCart';
     this.http.post<any>(url, {
       productId: id,
-      token : this.cookie.get('token'),
       quantity : this.orderedQuantity
     }).subscribe(res => this.onAddToCartResponse(),
       error => this.handleError(error)); {

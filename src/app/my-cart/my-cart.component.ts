@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class MyCartComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
-    private cookie: CookieService,
     private messageService: MessageService) { }
 
   ngOnInit() {
@@ -24,8 +22,7 @@ export class MyCartComponent implements OnInit {
 
   getMyCart() {
     let url = environment.apiUrl + '/myCart';
-    let params = new HttpParams().set("token", this.cookie.get('token'));
-    this.http.get(url, { params: params }).subscribe(res => this.onMyCartResponse(res),
+    this.http.get(url).subscribe(res => this.onMyCartResponse(res),
       error => this.handleError(error)); { };
   }
 
@@ -42,9 +39,7 @@ export class MyCartComponent implements OnInit {
 
   onCheckoutCartClicked(currentCart) {
     let url = environment.apiUrl + '/checkout';
-    this.http.put<any>(url, {
-      token: this.cookie.get("token")
-    }).subscribe(res => this.onSuccessfullcheckout(),
+    this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
       error => this.handleError(error)); {
     };
 
@@ -59,7 +54,7 @@ export class MyCartComponent implements OnInit {
 
   onDeleteItemClicked(productId) {
     let url = environment.apiUrl + '/deleteItem';
-    let params = new HttpParams().set("token", this.cookie.get('token')).set("productId", productId);
+    let params = new HttpParams().set("productId", productId);
     this.http.delete(url, { params: params }).subscribe(res => this.onDeleteItemResponse(res),
       error => this.handleError(error)); { };
 
