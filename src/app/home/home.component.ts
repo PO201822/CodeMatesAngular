@@ -13,8 +13,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     Promise.resolve(null).then(() => this.messageService.hideMessage());
   }
-
-  doTest() {
-    this.client.get("http://localhost:8080/auth/me").subscribe(console.log);
-  }
 }
