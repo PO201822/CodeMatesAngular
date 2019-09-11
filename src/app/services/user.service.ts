@@ -31,4 +31,15 @@ export class UserService {
     }
     return true;
   }
+  getUserRole(){
+    let url = environment.apiUrl + '/getrole';
+    this.http.get(url).subscribe(res => this.onGetRoleResponse(res),
+      error => this.handleError(error)); { };
+  }
+  onGetRoleResponse(res: Object): void {
+    throw new Error("Method not implemented.");
+  }
+  handleError(error: any): void {
+    throw new Error("Method not implemented.");
+  }
 }
