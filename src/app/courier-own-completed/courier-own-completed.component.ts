@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-courier-own-completed',
-  templateUrl: './courier-own-completed.component.html',
-  styleUrls: ['./courier-own-completed.component.css']
+  templateUrl: './courier-own-completed.component.html'
 })
 export class CourierOwnCompletedComponent implements OnInit {
 
