@@ -10,6 +10,7 @@ import { MessageService } from '../services/message.service';
 })
 export class NavigationBarComponent implements OnInit {
 
+  private role : any;
 
   constructor(
     private http: HttpClient,
@@ -18,17 +19,26 @@ export class NavigationBarComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.getUserRole();
   }
+
 
   onLogoutClicked() {
     this.cookie.deleteAll();
     this.messageService.hideMessage();
   }
 
-  handleError(error) {
+
+  getUserRole(){
+    let url = environment.apiUrl + '/getrole';
+    this.http.post(url, null).subscribe(res => this.onGetRoleResponse(res),
+      error => this.handleError(error)); { };
   }
-
-  onSuccessfulProfile() {
-
+  onGetRoleResponse(res : any) {
+    this.role = res.role;
+  }
+  handleError(error : any) {
+    console.log(error);
   }
 }
+
