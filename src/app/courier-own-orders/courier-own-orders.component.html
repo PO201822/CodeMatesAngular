@@ -1,1 +1,18 @@
-<p>courier-own-orders works!</p>
+<div class="container" *ngIf="jobs != null">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Order ID</th>
+          <th scope="col">Order date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Completion date</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <!-- <td>{{ job.id }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
