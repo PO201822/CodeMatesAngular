@@ -18,6 +18,9 @@ import { OrderComponent } from './order/order.component';
 import { MyCartComponent } from './my-cart/my-cart.component';
 import { MessageComponent } from './message/message.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { CourierJobsComponent } from './courier-jobs/courier-jobs.component';
+import { CourierOwnOrdersComponent } from './courier-own-orders/courier-own-orders.component';
+import { CourierOwnCompletedComponent } from './courier-own-completed/courier-own-completed.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -28,6 +31,9 @@ const appRoutes: Routes = [
   { path: 'restaurant/:id', component: RestaurantMenuComponent },
   { path : 'order', component: OrderComponent},
   { path : 'myCart', component: MyCartComponent}, 
+  { path : 'courier/jobs', component: CourierJobsComponent},
+  { path : 'courier/own', component: CourierOwnOrdersComponent},
+  { path : 'courier/complete', component: CourierOwnCompletedComponent},
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
 ];
@@ -46,6 +52,9 @@ const appRoutes: Routes = [
     OrderComponent,
     MyCartComponent,
     MessageComponent,
+    CourierJobsComponent,
+    CourierOwnOrdersComponent,
+    CourierOwnCompletedComponent,
   ],
   imports: [
     RouterModule.forRoot(
