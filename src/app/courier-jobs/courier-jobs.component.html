@@ -9,7 +9,6 @@
           <th scope="col">Quantity</th>
           <th scope="col">Date</th>
           <th scope="col">I'll take it!</th>
-
         </tr>
       </thead>
       <tbody>
@@ -20,43 +19,46 @@
           <td>{{ job.location }}</td>
           <td>{{ job.quantity }}</td>
           <td>{{ job.date }}</td>
-          <td><ng-template #content let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">Close
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <thead >
-                    <tr>
-                      <th scope="col" class= "text-black"> Restaurant </th>
-                      <th scope="col" class= "text-black"> Restaurant location </th>
-                      <th scope="col" class= "text-black"> Product </th>
-                      <th scope="col" class= "text-black"> Quantity </th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                      <tr *ngFor="let job of jobs">
-                        <td>{{ job.cartItems.restaurant }}</td>
-
-                      </tr>
-                  </tbody>
-              
-            </div>
-            <div class="modal-footer">
-              <td><button (click) = "onPickUpCartClicked(job.cartId); modal.dismiss('Cross click')">Take it!</button></td>
-            </div>
-          </ng-template>
-            
-          <hr>
-        
-        </td>
           <td><button (click) = "open(content)">Details</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  
+          <table class="container">
+            <td><ng-template #content let-modal>           
+              <div class="modal-header">
+                <h2 class="modal-title center" id="modal-basic-title ">Costumer's info</h2>
+                <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
+              </div>
+              <div class="modal-body">
+                <h2 class=" center mb-3" id="modal-basic-title center">Costumer's info</h2>
+                <p class="ml-3">Name : {{job.username}}</p>
+                <p class="ml-3" >Address : {{job.username}}</p>
+                <p class="ml-3">Location : {{job.username}}</p>
+                <h2 class=" center mb-5" id="modal-basic-title center">Ordered Products</h2>
+                <table class="container">
+                  <thead >
+                    <tr>
+                      <th scope="col" > <h4 class= "text-black"><b>Restaurant's name</b> </h4> </th>
+                      <th scope="col" > <h4 class= "text-black"><b>Restaurant's location </b></h4> </th>
+                      <th scope="col" > <h4 class= "text-black"><b>Product</b></h4> </th>
+                      <th scope="col" > <h4 class= "text-black"><b>Quantity</b></h4> </th>
+                    </tr>
+                  </thead> 
+                  <tbody>
+                  <tr *ngFor="let cartItem of job.cartItems">
+                    <td class="text-black"><p class= "text-black">{{ cartItem.product.restaurants[0].name }}</p></td>
+                    <td class="text-black"><p class= "text-black">{{ cartItem.product.restaurants[0].location }}</p></td>
+                    <td class="text-black"><p class= "text-black">{{ cartItem.product.name }}</p></td>
+                    <td class="text-black"><p class= "text-black">{{ cartItem.quantity }}</p></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <td><button class="btn btn-success btn-lg" (click) = "onPickUpCartClicked(job.cartId); modal.dismiss('Cross click')">Take it!</button></td>
+              </div>
+            </ng-template>
+            <hr>
+          </td>
+          </table>
+      </tr>
+    </tbody>
+  </table>
+</div>
