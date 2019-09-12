@@ -20,9 +20,43 @@
           <td>{{ job.location }}</td>
           <td>{{ job.quantity }}</td>
           <td>{{ job.date }}</td>
-          <td><button (click) = "onPickUpCartClicked(job.cartId)">Take it!</button></td>
+          <td><ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">Close
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <thead >
+                    <tr>
+                      <th scope="col" class= "text-black"> Restaurant </th>
+                      <th scope="col" class= "text-black"> Restaurant location </th>
+                      <th scope="col" class= "text-black"> Product </th>
+                      <th scope="col" class= "text-black"> Quantity </th>
+                    </tr>
+                  </thead>
 
+                  <tbody>
+                      <tr *ngFor="let job of jobs">
+                        <td>{{ job.cartItems.restaurant }}</td>
+
+                      </tr>
+                  </tbody>
+              
+            </div>
+            <div class="modal-footer">
+              <td><button (click) = "onPickUpCartClicked(job.cartId); modal.dismiss('Cross click')">Take it!</button></td>
+            </div>
+          </ng-template>
+            
+          <hr>
+        
+        </td>
+          <td><button (click) = "open(content)">Details</button></td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  

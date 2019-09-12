@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { JobserviceService } from '../services/jobservice.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-courier-jobs',
@@ -13,7 +15,9 @@ export class CourierJobsComponent implements OnInit {
 
   constructor(
     private messageService : MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private jobservice : JobserviceService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -36,6 +40,8 @@ export class CourierJobsComponent implements OnInit {
   setAllJobs(res){
     console.log(res)
     this.jobs = res;
+    this.jobservice.setJobs(res);
+  
   }
 
   onPickUpCartClicked(cartId){
@@ -49,7 +55,28 @@ export class CourierJobsComponent implements OnInit {
   }
   onPickedUpCartClickedResponse(res){
     console.log("jo");
+    this.ngOnInit();
   }
 
+  closeResult: string;
+
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
 
 }
