@@ -1,5 +1,5 @@
-<div [ngSwitch]="role">
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top"*ngSwitchCase="'ROLE_USER'">
+<div  class="sticky-top" [ngSwitch]="role">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngSwitchCase="'ROLE_USER'">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -26,7 +26,7 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top"*ngSwitchCase="'ROLE_ADMIN'">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark"*ngSwitchCase="'ROLE_ADMIN'">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -53,17 +53,14 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top"*ngSwitchCase="'ROLE_COURIER'">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary"*ngSwitchCase="'ROLE_COURIER'">
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/jobs" routerLinkActive="active"><i class="fas fa-home"></i> Jobs</a>
+        <a class="nav-link mr-5" routerLink="/courier/jobs" routerLinkActive="active"><i class="fas fa-box"> </i> Costumer's Orders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/own" routerLinkActive="active"><i class="far fa-address-card"></i> Current orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/complete" routerLinkActive="active"><i class="fas fa-utensils"></i> Completed orders</a>
+        <a class="nav-link mr-5" routerLink="/courier/own" routerLinkActive="active"><i class="fas fa-truck"></i> Current Jobs</a>
       </li>
     </ul>
   </div>
