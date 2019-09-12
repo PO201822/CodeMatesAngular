@@ -1,1 +1,28 @@
-<p>courier-jobs works!</p>
+<div class="container" *ngIf="jobs != null">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Cart ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Address</th>
+          <th scope="col">Location</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Date</th>
+          <th scope="col">I'll take it!</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs">
+          <td>{{ job.cartId }}</td>
+          <td>{{ job.username }}</td>
+          <td>{{ job.address }}</td>
+          <td>{{ job.location }}</td>
+          <td>{{ job.quantity }}</td>
+          <td>{{ job.date }}</td>
+          <td><button (click) = "onPickUpCartClicked(job.cartId)">Take it!</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
