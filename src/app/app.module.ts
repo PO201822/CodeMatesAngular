@@ -21,6 +21,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { CourierJobsComponent } from './courier-jobs/courier-jobs.component';
 import { CourierOwnOrdersComponent } from './courier-own-orders/courier-own-orders.component';
 import { CourierOwnCompletedComponent } from './courier-own-completed/courier-own-completed.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     CourierJobsComponent,
     CourierOwnOrdersComponent,
     CourierOwnCompletedComponent,
+  
   ],
   imports: [
     RouterModule.forRoot(
@@ -64,7 +66,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     CookieService, 
