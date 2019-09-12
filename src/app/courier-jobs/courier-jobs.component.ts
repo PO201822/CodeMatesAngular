@@ -38,9 +38,11 @@ export class CourierJobsComponent implements OnInit {
   }
 
   setAllJobs(res){
-    console.log(res)
     this.jobs = res;
     this.jobservice.setJobs(res);
+    if(this.jobs == null){
+      this.messageService.showMessage("No costumer orders at the moment, come back later!", "info") ;
+    }
   
   }
 
@@ -55,14 +57,14 @@ export class CourierJobsComponent implements OnInit {
   }
   onPickedUpCartClickedResponse(res){
     console.log("jo");
-    this.ngOnInit();
+    this.getAllJobs();
   }
 
   closeResult: string;
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'xl', scrollable: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
