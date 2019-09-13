@@ -35,8 +35,10 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     }
   
-    handleError(req: HttpRequest<any>, event) {
-      console.error('Unauthorized request');
-      this.router.navigate(["/unauthorized"]);
+    handleError(req: HttpRequest<any>, error) {
+      if(error.status == 403){
+        console.error('Unauthorized request');
+        this.router.navigate(["/unauthorized"]);
+      }
     }
-    }
+  }
