@@ -7,7 +7,7 @@
           <th scope="col">Address</th>
           <th scope="col">Location</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Date</th>
+          <th scope="col">Order's Date</th>
           <th scope="col">I'll take it!</th>
         </tr>
       </thead>
@@ -18,7 +18,14 @@
           <td>{{ job.address }}</td>
           <td>{{ job.location }}</td>
           <td>{{ job.quantity }}</td>
-          <td>{{ job.date }}</td>
+          <td>
+            {{ job.date[0] }}. 
+            {{ job.date[1] }}. 
+            {{ job.date[2] }} @ 
+            {{ job.date[3] }}: 
+            {{ job.date[4] }}: 
+            {{ job.date[5] }}
+          </td>
           <td><button (click) = "open(content)">Details</button></td>
           <table class="container">
             <td><ng-template #content let-modal>           

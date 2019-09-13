@@ -40,6 +40,7 @@ export class CourierJobsComponent implements OnInit {
   setAllJobs(res){
     this.jobs = res;
     this.jobservice.setJobs(res);
+    console.log(this.jobs);
     if(this.jobs == null){
       this.messageService.showMessage("No costumer orders at the moment, come back later!", "info") ;
     }
