@@ -1,5 +1,5 @@
 # CodeMates
-> A food delivering service where costumers can browse restaurant menus by their location and order products. Couriers are waiting for orders to pick up and deliver it to the costumer's address!
+> A food delivering service where costumers can browse the products of restaurants by location and order meals, Couriers are waiting for orders to pick up and deliver it to the costumer's address!
 
 ## Details
 
@@ -9,9 +9,8 @@ The web application is split into two projects :
 - [Back end with Java, Spring and PostgreSQL](https://github.com/PeterOrliczki/CodeMatesSpring)
 
 ### About the project
-It was made in under three sprints with SCRUM methodology.                           
-The project's back end was made with Java, Spring, and PostgreSQL with Hibernate's JPA implementation. It's a single page web application with the help of Angular for DOM manipulation and asynchronous method execution.
-The web app uses Spring MVC for RESTful services.
+The project is currently under development, right now is at the third sprint with SCRUM methodology.   
+The project's back end was made with Java, Spring, and PostgreSQL.   The web app uses Spring MVC for RESTful services and Spring's Hibernate for JPA implementation.   It's a single page web application were DOM manipulation and asynchronous method execution is done with Angular.   
 
 ## Deploying and Running
 
@@ -33,7 +32,7 @@ OS X & Linux:
 mvn clean package
 ```
 ### Note
-After the running and deploying for both the front end and the back end parts of the web app application will run in the browser under http://localhost:4200/ url.
+After the running and deploying for both the front end and the back end, the web app application will run in the browser under http://localhost:4200/ url.
 
 ## Developers
 - tarapeti
