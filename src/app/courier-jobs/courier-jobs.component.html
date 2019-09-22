@@ -1,8 +1,8 @@
 <div class="container" *ngIf="jobs != null">
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th scope="col">Cart ID</th>
+        <tr class="font-22">
+          <th  scope="col">Cart ID</th>
           <th scope="col">Username</th>
           <th scope="col">Address</th>
           <th scope="col">Location</th>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let job of jobs">
+        <tr *ngFor="let job of jobs" class="font-20">
           <td>{{ job.cartId }}</td>
           <td>{{ job.username }}</td>
           <td>{{ job.address }}</td>
@@ -30,7 +30,7 @@
           <table class="container">
             <td><ng-template #content let-modal>           
               <div class="modal-header">
-                <h2 class="modal-title center" id="modal-basic-title ">Costumer's info</h2>
+                <h2 class="modal-title center" id="modal-basic-title ">#{{job.cartId}} Cart's order details  </h2>
                 <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
               </div>
               <div class="modal-body">
@@ -38,7 +38,7 @@
                 <p class="ml-3">Name : {{job.username}}</p>
                 <p class="ml-3" >Address : {{job.username}}</p>
                 <p class="ml-3">Location : {{job.username}}</p>
-                <h2 class=" center mb-5" id="modal-basic-title center">Ordered Products</h2>
+                <h2 class=" center mb-5" id="modal-basic-title center">Ordered products</h2>
                 <table class="container">
                   <thead >
                     <tr>
