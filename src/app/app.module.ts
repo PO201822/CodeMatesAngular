@@ -20,7 +20,6 @@ import { MessageComponent } from './message/message.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { CourierJobsComponent } from './courier-jobs/courier-jobs.component';
 import { CourierOwnOrdersComponent } from './courier-own-orders/courier-own-orders.component';
-import { CourierOwnCompletedComponent } from './courier-own-completed/courier-own-completed.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
@@ -35,7 +34,6 @@ const appRoutes: Routes = [
   { path : 'myCart', component: MyCartComponent}, 
   { path : 'courier/jobs', component: CourierJobsComponent},
   { path : 'courier/own', component: CourierOwnOrdersComponent},
-  { path : 'courier/complete', component: CourierOwnCompletedComponent},
   { path : 'unauthorized', component: UnauthorizedComponent},
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
@@ -57,7 +55,6 @@ const appRoutes: Routes = [
     MessageComponent,
     CourierJobsComponent,
     CourierOwnOrdersComponent,
-    CourierOwnCompletedComponent,
     UnauthorizedComponent,
   
   ],
