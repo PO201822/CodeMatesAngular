@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -15,30 +16,28 @@ export class NavigationBarComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private cookie: CookieService,
-    private messageService : MessageService
+    private messageService : MessageService,
+    private errorHandlerService : ErrorHandlerService
     ) { }
 
   ngOnInit() {
     this.getUserRole();
   }
 
-
   onLogoutClicked() {
     this.cookie.deleteAll();
     this.messageService.hideMessage();
   }
 
-
   getUserRole(){
-    let url = environment.apiUrl + '/getrole';
-    this.http.post(url, null).subscribe(res => this.onGetRoleResponse(res),
-      error => this.handleError(error)); { };
+    let url = environment.apiUrl + '/getRole';
+    this.http.get(url).subscribe(res => this.setRole(res),
+      error => this.errorHandlerService.handleError(error)); { };
   }
-  onGetRoleResponse(res : any) {
+
+  setRole(res) {
     this.role = res.role;
   }
-  handleError(error : any) {
-    console.log(error);
-  }
+
 }
 

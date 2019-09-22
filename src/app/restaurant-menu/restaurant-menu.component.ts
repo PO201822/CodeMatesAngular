@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 
 @Component({
@@ -21,18 +21,16 @@ export class RestaurantMenuComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private cookie : CookieService,
-    private renderer :Renderer2
+    private renderer :Renderer2,
+    private errorHandlerService : ErrorHandlerService
   ) { }
-
 
   ngOnInit() {
     this.showMessage = false;
     this.activatedRoute.params.subscribe((parameters) => {
       let url = environment.apiUrl + '/restaurant/' + parameters.id;
       this.http.get(url).subscribe(res => this.onLoadMenuResponse(res),
-    error => this.handleError(error)); { };
+    error => this.errorHandlerService.handleError(error)); { };
     });
   }
 
@@ -47,18 +45,13 @@ export class RestaurantMenuComponent implements OnInit {
       productId: id,
       quantity : this.orderedQuantity
     }).subscribe(res => this.onAddToCartResponse(),
-      error => this.handleError(error)); {
+      error => this.errorHandlerService.handleError(error)); {
     };
-    //this.router.navigate(['order']);
   }
 
   onAddToCartResponse() {
     this.showMessage = true;
     this. message = this.orderedQuantity + ' of ' + this.orderedName +'(s) added to cart.';
-  }
-
-  handleError(error: any): void {
-    console.log("not working");
   }
 
   onLoadMenuResponse(res){

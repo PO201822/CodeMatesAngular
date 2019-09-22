@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MessageService } from '../services/message.service';
 import { CartService } from '../services/cart.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Component({
   selector: 'app-my-cart',
@@ -13,9 +14,12 @@ export class MyCartComponent implements OnInit {
   cartItems: any = null;
   totalPrice: number = 0;
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private messageService: MessageService,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private errorHandlerService : ErrorHandlerService
+    ) { }
 
   ngOnInit() {
     Promise.resolve(null).then(() => this.messageService.hideMessage());
@@ -25,7 +29,7 @@ export class MyCartComponent implements OnInit {
   getMyCart() {
     let url = environment.apiUrl + '/myCart';
     this.http.get(url).subscribe(res => this.onMyCartResponse(res),
-      error => this.handleError(error)); { };
+      error => this.errorHandlerService.handleError(error)); { };
   }
 
   onMyCartResponse(res) {
@@ -38,14 +42,10 @@ export class MyCartComponent implements OnInit {
     }
   }
 
-  handleError(error: any): void {
-    console.log(error);
-  }
-
   onCheckoutCartClicked() {
     let url = environment.apiUrl + '/checkout';
     this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
-      error => this.handleError(error)); {
+      error => this.errorHandlerService.handleError(error)); {
     };
   }
 
@@ -60,8 +60,7 @@ export class MyCartComponent implements OnInit {
     let url = environment.apiUrl + '/deleteItem';
     let params = new HttpParams().set("productId", productId);
     this.http.delete(url, { params: params }).subscribe(res => this.getMyCart(),
-      error => this.handleError(error)); { };
-
+      error => this.errorHandlerService.handleError(error)); { };
   }
 
   updateQuantity(cartItemId, mathOperator, quantityInput) {
@@ -78,7 +77,7 @@ export class MyCartComponent implements OnInit {
       cartItemId: cartItemId,
       quantity: quantity
     }).subscribe(res => this.getMyCart(),
-      error => this.handleError(error)); {
+      error => this.errorHandlerService.handleError(error)); {
     };
   }
 

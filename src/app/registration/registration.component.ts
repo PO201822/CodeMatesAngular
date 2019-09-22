@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';
 import { UserService } from '../services/user.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class RegistrationComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private errorHandlerService : ErrorHandlerService
   ) { }
 
   ngOnInit() {
@@ -29,11 +31,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmitRegistrationClicked() {
-    if (!this.userService.isInputValid([this.name,
-        this.password,
-        this.email,
-        this.location,
-        this.address])) {
+    if (!this.userService.isInputValid([this.name, this.password, this.email, this.location, this.address])) {
       this.messageService.showMessage("Every input field is required!", "danger");
       return;
     }
@@ -45,20 +43,13 @@ export class RegistrationComponent implements OnInit {
       password: this.password,
       location: this.location,
       address: this.address
-    }).subscribe(res => this.onSuccessRegistration(),
-      error => this.handleError()); {
+    }).subscribe(res => this.router.navigate(['']),
+      error => this.errorHandlerService.handleError(error)); {
     };
-  }
-
-  onSuccessRegistration() {
-    this.router.navigate(['']);
-  }
-
-  handleError() {
-    this.messageService.showMessage("Email and/or username already exists!", "danger");
   }
 
   onBackToLoginClicked() {
     this.router.navigate(['']);
   }
+  
 }

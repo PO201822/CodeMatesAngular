@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../services/message.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 
 @Component({
@@ -21,22 +22,20 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private cookie: CookieService,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private errorHandlerService : ErrorHandlerService
   ) { }
 
   ngOnInit() {
     Promise.resolve(null).then(() => this.messageService.hideMessage());
-    this.setProfileFields();
+    this.getProfile();
   }
 
-  setProfileFields(){
-    this.userService.getUser().subscribe((res: any) => this.onResponseReceived(res),
-      (error: any) => this.handleError(error)); {
+  getProfile(){
+    let url = environment.apiUrl + '/getProfile';
+    this.http.get<any>(url).subscribe((res: any) => this.onResponseReceived(res),
+      (error: any) => this.errorHandlerService.handleError(error)); {
     };
-  }
-
-  handleError(error: any): void {
-    this.messageService.showMessage("Profile data can't be loaded!", "danger");
   }
 
   onResponseReceived(res) {
@@ -53,28 +52,20 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    let url = environment.apiUrl + '/profile';
+    let url = environment.apiUrl + '/updateProfile';
     this.http.put<any>(url, {
       name: this.username,
       password: this.password,
       email: this.email,
       location: this.location,
       address: this.address
-    }).subscribe(res => this.onProfileUpdateResponse(res),
-      error => this.handleUpdateError()); {
+    }).subscribe(res => this.messageService.showMessage("Profile updated successfuly.", "success"),
+      error => this.errorHandlerService.handleError(error)); {
     };
-
-  }
-  onProfileUpdateResponse(res: any): void {
-    this.messageService.showMessage("Profile updated successfuly.", "success");
-  }
-
-  handleUpdateError() {
-    this.messageService.showMessage("Invalid email address! New email address must be unique!", "danger");
   }
 
   onCancelClicked(){
-    this.setProfileFields();
+    this.getProfile();
     this.messageService.showMessage("Changes were reverted.","info");
   }
 
