@@ -16,8 +16,8 @@ export class ErrorHandlerService {
       this.router.navigate(["/unauthorized"]);
     }
     else {
-      this.messageService.showMessage(error.message, "danger");
+      this.messageService.showMessage(error.error.message, "danger");
     }
   }
-  
+
 }
