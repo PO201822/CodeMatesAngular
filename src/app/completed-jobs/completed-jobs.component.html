@@ -1,0 +1,63 @@
+<div class="container" *ngIf="jobs != null">
+    <table class="table table-striped">
+      <thead>
+        <tr class="font-22">
+          <th scope="col">Order ID</th>
+          <th scope="col">Order Date</th>
+          <th scope="col">Details</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let job of jobs" class="font-20">
+          <td>{{ job.orderId }}</td>
+          <td>
+            {{ job.jobsDto.date[0] }}. 
+            {{ job.jobsDto.date[1] }}. 
+            {{ job.jobsDto.date[2] }} @ 
+            {{ job.jobsDto.date[3] }}: 
+            {{ job.jobsDto.date[4] }}: 
+            {{ job.jobsDto.date[5] }}
+          </td>
+          <td><button (click) = "open(content)">Details</button></td>
+            <table class="container">
+              <td><ng-template #content let-modal>           
+                <div class="modal-header">
+                  <h2 class="modal-title center" id="modal-basic-title ">#{{job.cartId}} Cart's order details  </h2>
+                  <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
+                </div>
+                <div class="modal-body">
+                  <h2 class=" center mb-3" id="modal-basic-title center">Costumer's info</h2>
+                  <p class="ml-3">Name : {{job.jobsDto.username}}</p>
+                  <p class="ml-3" >Address : {{job.jobsDto.address}}</p>
+                  <p class="ml-3">Location : {{job.jobsDto.location}}</p>
+                  <h2 class=" center mb-5" id="modal-basic-title center">Ordered products</h2>
+                  <table class="container">
+                    <thead >
+                      <tr>
+                        <th scope="col" > <h4 class= "text-black"><b>Restaurant's name</b> </h4> </th>
+                        <th scope="col" > <h4 class= "text-black"><b>Restaurant's location </b></h4> </th>
+                        <th scope="col" > <h4 class= "text-black"><b>Product</b></h4> </th>
+                        <th scope="col" > <h4 class= "text-black"><b>Quantity</b></h4> </th>
+                      </tr>
+                    </thead> 
+                    <tbody>
+                    <tr *ngFor="let cartItem of job.jobsDto.cartItems">
+                      <td class="text-black"><p class= "text-black">{{ cartItem.product.restaurants[0].name }}</p></td>
+                      <td class="text-black"><p class= "text-black">{{ cartItem.product.restaurants[0].location }}</p></td>
+                      <td class="text-black"><p class= "text-black">{{ cartItem.product.name }}</p></td>
+                      <td class="text-black"><p class= "text-black">{{ cartItem.quantity }}</p></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                </div>
+              </ng-template>
+              <hr>
+            </td>
+            <td>Completed</td>
+          </table>
+    </tbody>
+  </table>
+  </div>
