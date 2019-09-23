@@ -31,12 +31,13 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent }, 
   { path: 'restaurants', component: RestaurantsComponent }, 
   { path: 'restaurant/:id', component: RestaurantMenuComponent },
-  { path : 'order', component: OrderComponent},
-  { path : 'myCart', component: MyCartComponent}, 
-  { path : 'courier/jobs', component: CourierJobsComponent},
-  { path : 'courier/own', component: CourierOwnOrdersComponent},
-  { path : 'courier/complete', component: CompletedJobsComponent},
-  { path : 'unauthorized', component: UnauthorizedComponent},
+  { path: 'orders', component: OrderComponent},
+  { path: 'myCart', component: MyCartComponent}, 
+  { path: 'courier/jobs', component: CourierJobsComponent},
+  { path: 'courier/own', component: CourierOwnOrdersComponent},
+  { path: 'courier/complete', component: CompletedJobsComponent},
+  { path: 'courier/complete', component: CompletedJobsComponent},
+  { path: 'unauthorized', component: UnauthorizedComponent},
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
 ];
