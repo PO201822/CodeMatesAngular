@@ -1,32 +1,42 @@
 <div class="container" *ngIf="cartItems != null">
   <table class="table table-striped">
-    <thead>
+    <thead class="font-25">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
+        <th scope="col"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="font-25">
       <tr *ngFor="let cartItem of cartItems; let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{ cartItem.product.name }}</td>
         <td>
-          <button class="btn btn-danger" (click)="updateQuantity(cartItem.id, '-', cartItem.quantity)">
-            <i class="fas fa-minus"></i>
-          </button>
+          <p class="font-25">
+            <button class="btn btn-danger mr-2" (click)="updateQuantity(cartItem.id, '-', cartItem.quantity)">
+                <i class="fas fa-minus"></i>
+            </button>
             {{ cartItem.quantity }}
-          <button class="btn btn-success" (click)="updateQuantity(cartItem.id, '+', cartItem.quantity)">
-            <i class="fas fa-plus"></i>
-          </button>
+            <button class="btn btn-success ml-2" (click)="updateQuantity(cartItem.id, '+', cartItem.quantity)">
+                <i class="fas fa-plus"></i>
+            </button>
+          </p>             
         </td>
         <td>{{ cartItem.price * cartItem.quantity}}</td>
-        <button (click)="onDeleteItemClicked(cartItem.product.id)">x</button>
+        <td>
+          <button class="btn btn-danger btn-lg" (click)="onDeleteItemClicked(cartItem.product.id)">
+            <i class="fas fa-times-circle"></i> Remove
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
-  <hr>
-  <h1>Total : {{totalPrice}}</h1>
-  <button type="button" class="btn btn-success mr-3 btn-lg" (click)="onCheckoutCartClicked()">Order</button>
+  <hr class="hr-white mt-5">
+  <div class="float-right font-25 text-white">Total : {{totalPrice}} <br>
+    <button type="button" class="btn btn-success mt-3 btn-lg float-right" (click)="onCheckoutCartClicked()">
+      <i class="fas fa-check-circle"></i> Order 
+    </button>
+  </div>
 </div>
