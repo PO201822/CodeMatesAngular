@@ -22,6 +22,7 @@ import { CourierJobsComponent } from './courier-jobs/courier-jobs.component';
 import { CourierOwnOrdersComponent } from './courier-own-orders/courier-own-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { CompletedJobsComponent } from './completed-jobs/completed-jobs.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   { path : 'myCart', component: MyCartComponent}, 
   { path : 'courier/jobs', component: CourierJobsComponent},
   { path : 'courier/own', component: CourierOwnOrdersComponent},
+  { path : 'courier/complete', component: CompletedJobsComponent},
   { path : 'unauthorized', component: UnauthorizedComponent},
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     CourierJobsComponent,
     CourierOwnOrdersComponent,
     UnauthorizedComponent,
+    CompletedJobsComponent,
   
   ],
   imports: [

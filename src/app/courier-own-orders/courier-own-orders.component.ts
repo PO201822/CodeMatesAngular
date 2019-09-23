@@ -60,10 +60,20 @@ export class CourierOwnOrdersComponent implements OnInit {
     let url = environment.apiUrl + '/courier/completeOrder';
     this.http.put<any>(url, {
       orderId : orderId
-    }).subscribe(res => this.messageService.showMessage("Profile updated successfuly.", "success"),
+    }).subscribe(res => this.messageService.showMessage("Order completed", "success"),
       error => this.errorHandlerService.handleError(error)); {
     };
+    this.getMyCurrentJobs();
+  }
 
+  onDissmissJobClicked(orderId){
+    let url = environment.apiUrl + '/courier/dismissOrder';
+    this.http.put<any>(url, {
+      orderId : orderId
+    }).subscribe(res => this.messageService.showMessage("Order dissmissed", "danger"),
+      error => this.errorHandlerService.handleError(error)); {
+    };
+    this.getMyCurrentJobs();
   }
 
 }
