@@ -34,8 +34,9 @@ export class CourierOwnOrdersComponent implements OnInit {
 
   setJobsList(res){
     this.jobs = res;
-
-    console.log(this.jobs);
+    if(this.jobs == null){
+      this.messageService.showMessage("You don't have any jobs at the time.", "info") ;
+    }
   }
 
   open(content) {
@@ -60,20 +61,18 @@ export class CourierOwnOrdersComponent implements OnInit {
     let url = environment.apiUrl + '/courier/completeOrder';
     this.http.put<any>(url, {
       orderId : orderId
-    }).subscribe(res => this.messageService.showMessage("Order completed", "success"),
+    }).subscribe(res => this.getMyCurrentJobs(),
       error => this.errorHandlerService.handleError(error)); {
     };
-    this.getMyCurrentJobs();
   }
 
   onDissmissJobClicked(orderId){
     let url = environment.apiUrl + '/courier/dismissOrder';
     this.http.put<any>(url, {
       orderId : orderId
-    }).subscribe(res => this.messageService.showMessage("Order dissmissed", "danger"),
+    }).subscribe(res => this.getMyCurrentJobs(),
       error => this.errorHandlerService.handleError(error)); {
     };
-    this.getMyCurrentJobs();
   }
 
 }
