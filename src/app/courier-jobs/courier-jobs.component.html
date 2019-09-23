@@ -1,3 +1,4 @@
+<br><br>
 <div class="container" *ngIf="jobs != null">
     <table class="table table-striped">
       <thead>
@@ -27,7 +28,7 @@
             {{ job.date[5] }}
           </td>
           <td><button (click) = "open(content)">Details</button></td>
-          <table class="container">
+          <table class="container table-borderless">
             <td><ng-template #content let-modal>           
               <div class="modal-header">
                 <h2 class="modal-title center" id="modal-basic-title ">#{{job.cartId}} Cart's order details  </h2>
