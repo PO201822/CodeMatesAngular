@@ -19,10 +19,10 @@ import { MyCartComponent } from './my-cart/my-cart.component';
 import { MessageComponent } from './message/message.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { CourierJobsComponent } from './courier-jobs/courier-jobs.component';
-import { CourierOwnOrdersComponent } from './courier-own-orders/courier-own-orders.component';
+import { CourierOwnOrdersComponent } from './courier-current-jobs/courier-own-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { CompletedJobsComponent } from './completed-jobs/completed-jobs.component';
+import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
