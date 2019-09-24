@@ -23,6 +23,8 @@ import { CourierOwnOrdersComponent } from './courier-current-jobs/courier-own-or
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -71,7 +73,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    NgxPayPalModule
   ],
   providers: [
     CookieService, 
