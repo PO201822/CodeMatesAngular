@@ -34,10 +34,7 @@
     </tbody>
   </table>
   <hr class="hr-white mt-5">
-  <div class="float-right font-25 text-white">Total : {{totalPrice}} <br>
-    <button type="button" class="btn btn-success mt-3 btn-lg float-right" (click)="onCheckoutCartClicked()">
-      <i class="fas fa-check-circle"></i> Order 
-    </button>
+  <div class="float-right font-25 text-white"><i>Total : {{totalPrice}}</i> <br>
     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
   </div>
 </div>
