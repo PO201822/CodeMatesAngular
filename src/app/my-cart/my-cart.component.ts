@@ -15,6 +15,7 @@ export class MyCartComponent implements OnInit {
   cartItems: any = null;
   totalPrice: number = 0;
   public payPalConfig?: IPayPalConfig;
+  paypalItems : any[] = [];
 
 
   constructor(
@@ -26,9 +27,25 @@ export class MyCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initConfig();
-    Promise.resolve(null).then(() => this.messageService.hideMessage());
     this.getMyCart();
+    Promise.resolve(null).then(() => this.messageService.hideMessage());
+  }
+
+  setPayPalItems(){
+    this.paypalItems=[];
+    for(var key in this.cartItems){
+      let cartItem = this.cartItems[key];
+      this.paypalItems.push({
+        name: cartItem.product.name,
+        quantity: cartItem.quantity,
+        category: 'DIGITAL_GOODS',
+        unit_amount: {
+          currency_code: 'HUF',
+          value: cartItem.price,
+        }
+       })
+    }
+    this.initConfig();
   }
 
   getMyCart() {
@@ -44,11 +61,11 @@ export class MyCartComponent implements OnInit {
     }
     else {
       this.totalPrice = this.cartService.calculateTotalPrice(this.cartItems);
+      this.setPayPalItems();
     }
   }
 
   onCheckoutCartClicked() {
-    console.log("this.onCheckoutCartClicked");
     let url = environment.apiUrl + '/checkout';
     this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
       error => this.errorHandlerService.handleError(error)); {
@@ -56,7 +73,6 @@ export class MyCartComponent implements OnInit {
   }
 
   onSuccessfullcheckout() {
-    console.log("this.onSuccessfullcheckout");
     this.cartItems = null;
     this.messageService.showMessage("Thank you for your order! " +
       "You have nothing left to do, be patient until the delivery is complete.",
@@ -98,25 +114,15 @@ export class MyCartComponent implements OnInit {
           {
             amount: {
               currency_code: 'HUF',
-              value: '1000',
+              value: String(this.totalPrice),
               breakdown: {
                 item_total: {
                   currency_code: 'HUF',
-                  value: '1000'
+                  value: String(this.totalPrice),
                 }
               }
             },
-            items: [
-              {
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                  currency_code: 'HUF',
-                  value: '1000',
-                },
-              }
-            ]
+            items: this.paypalItems
           }
         ]
       },
