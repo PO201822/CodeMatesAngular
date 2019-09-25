@@ -15,6 +15,7 @@ export class MyCartComponent implements OnInit {
   cartItems: any = null;
   totalPrice: number = 0;
   public payPalConfig?: IPayPalConfig;
+  paypalItems : any[] = [];
 
 
   constructor(
@@ -26,9 +27,24 @@ export class MyCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getMyCart();
     this.initConfig();
     Promise.resolve(null).then(() => this.messageService.hideMessage());
-    this.getMyCart();
+  }
+
+  setPayPalItems(cartItems){
+    for(var key in this.cartItems){
+      let cartItem = cartItems[key];
+      this.paypalItems.push({
+        name: cartItem.product.name,
+        quantity: cartItem.quantity,
+        category: cartItem.product.category,
+        unit_amount: {
+          currency_code: 'HUF',
+          value: cartItem.price * cartItem.quantity,
+        }
+       })
+    }
   }
 
   getMyCart() {
@@ -89,6 +105,10 @@ export class MyCartComponent implements OnInit {
   }
 
   private initConfig(): void {
+    this.zone.run(() => {
+      this.setPayPalItems(this.cartItems);
+    });
+  
     this.payPalConfig = {
       currency: 'EUR',
       clientId: 'AZb5NI5Fx1NxkxLZi1AiNj6srcBQSCk1CKWv7A7j0jxxBEWwau4mmS5ny_ELpruvh3-GlFtfmdo_G4PN',
@@ -106,17 +126,7 @@ export class MyCartComponent implements OnInit {
                 }
               }
             },
-            items: [
-              {
-                name: 'Enterprise Subscription',
-                quantity: '1',
-                category: 'DIGITAL_GOODS',
-                unit_amount: {
-                  currency_code: 'HUF',
-                  value: '1000',
-                },
-              }
-            ]
+            items: this.paypalItems
           }
         ]
       },
