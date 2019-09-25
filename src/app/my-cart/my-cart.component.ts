@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MessageService } from '../services/message.service';
@@ -21,8 +21,9 @@ export class MyCartComponent implements OnInit {
     private http: HttpClient,
     private messageService: MessageService,
     private cartService: CartService,
-    private errorHandlerService : ErrorHandlerService
-    ) { }
+    private errorHandlerService: ErrorHandlerService,
+    private zone: NgZone
+  ) { }
 
   ngOnInit() {
     this.initConfig();
@@ -47,6 +48,7 @@ export class MyCartComponent implements OnInit {
   }
 
   onCheckoutCartClicked() {
+    console.log("this.onCheckoutCartClicked");
     let url = environment.apiUrl + '/checkout';
     this.http.put<any>(url, null).subscribe(res => this.onSuccessfullcheckout(),
       error => this.errorHandlerService.handleError(error)); {
@@ -54,6 +56,7 @@ export class MyCartComponent implements OnInit {
   }
 
   onSuccessfullcheckout() {
+    console.log("this.onSuccessfullcheckout");
     this.cartItems = null;
     this.messageService.showMessage("Thank you for your order! " +
       "You have nothing left to do, be patient until the delivery is complete.",
@@ -85,8 +88,8 @@ export class MyCartComponent implements OnInit {
     };
   }
 
-      private initConfig(): void {
-      this.payPalConfig = {
+  private initConfig(): void {
+    this.payPalConfig = {
       currency: 'EUR',
       clientId: 'AZb5NI5Fx1NxkxLZi1AiNj6srcBQSCk1CKWv7A7j0jxxBEWwau4mmS5ny_ELpruvh3-GlFtfmdo_G4PN',
       createOrderOnClient: (data) => <ICreateOrderRequest>{
@@ -94,12 +97,12 @@ export class MyCartComponent implements OnInit {
         purchase_units: [
           {
             amount: {
-              currency_code: 'EUR',
-              value: '9.99',
+              currency_code: 'HUF',
+              value: '1000',
               breakdown: {
                 item_total: {
-                  currency_code: 'EUR',
-                  value: '9.99'
+                  currency_code: 'HUF',
+                  value: '1000'
                 }
               }
             },
@@ -109,8 +112,8 @@ export class MyCartComponent implements OnInit {
                 quantity: '1',
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
-                  currency_code: 'EUR',
-                  value: '9.99',
+                  currency_code: 'HUF',
+                  value: '1000',
                 },
               }
             ]
@@ -131,6 +134,9 @@ export class MyCartComponent implements OnInit {
         });
       },
       onClientAuthorization: (data) => {
+        this.zone.run(() => {
+          this.onCheckoutCartClicked();
+        });
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       },
       onCancel: (data, actions) => {
@@ -143,6 +149,6 @@ export class MyCartComponent implements OnInit {
         console.log('onClick', data, actions);
       },
     };
-    }
+  }
 
 }
