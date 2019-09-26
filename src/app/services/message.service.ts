@@ -1,3 +1,8 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
 export class MessageService {
     public isMessageShown: boolean = false;
     private message : string = '';

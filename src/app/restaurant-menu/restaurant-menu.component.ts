@@ -28,7 +28,7 @@ export class RestaurantMenuComponent implements OnInit {
   ngOnInit() {
     this.showMessage = false;
     this.activatedRoute.params.subscribe((parameters) => {
-      let url = environment.apiUrl + '/restaurant/' + parameters.id;
+      let url = environment.apiUrl + '/public/restaurant/' + parameters.id;
       this.http.get(url).subscribe(res => this.onLoadMenuResponse(res),
     error => this.errorHandlerService.handleError(error)); { };
     });

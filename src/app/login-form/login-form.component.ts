@@ -5,6 +5,7 @@ import { Router} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
 import { ErrorHandlerService } from '../services/error-handler.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private cookie: CookieService,
     private messageService : MessageService,
-    private errorHandlerService : ErrorHandlerService
+    private errorHandlerService : ErrorHandlerService,
+    private spinner : NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     let url = environment.apiUrl + '/auth/signin';
     this.http.post<any>(url, {
       name: this.model.username,
@@ -44,7 +47,8 @@ export class LoginFormComponent implements OnInit {
 
   onSuccessfulLogin(res){
     this.messageService.hideMessage();
-    this.cookie.set('token', res.token),
+    this.cookie.set('token', res.token);
+    this.spinner.hide();
     this.router.navigate(['home']);
   }
 

@@ -29,7 +29,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   getCurrentLocation() {
-    let url = environment.apiUrl + '/getLocation';
+    let url = environment.apiUrl + '/public/getLocation';
     this.http.get<any>(url).subscribe(res => this.onLocationRecieved(res),
       error => this.errorHandlerService.handleError(error)); {
     };
@@ -51,7 +51,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   onSearchByLocationClicked() {
-    let url = environment.apiUrl + '/restaurants';
+    let url = environment.apiUrl + '/public/restaurants';
     let params = new HttpParams().set("location", this.location);
     this.http.get(url, { params: params }).subscribe(res => this.onSearchByLocationResponse(res),
       error => this.errorHandlerService.handleError(error)); { };

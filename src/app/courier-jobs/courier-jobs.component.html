@@ -8,8 +8,8 @@
           <th scope="col">Address</th>
           <th scope="col">Location</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Order's Date</th>
-          <th scope="col">I'll take it!</th>
+          <th scope="col">Order Date</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -27,12 +27,12 @@
             {{ job.date[4] }}: 
             {{ job.date[5] }}
           </td>
-          <td><button (click) = "open(content)">Details</button></td>
+          <td><button class="btn btn-success btn-lg" (click) = "open(content)"><i class="fas fa-info-circle"></i> Take Order</button></td>
           <table class="container table-borderless">
             <td><ng-template #content let-modal>           
               <div class="modal-header">
                 <h2 class="modal-title center" id="modal-basic-title ">#{{job.cartId}} Cart's order details  </h2>
-                <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
+                <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')"><i class="fas fa-window-close"></i> Close</button>
               </div>
               <div class="modal-body">
                 <h2 class=" center mb-3" id="modal-basic-title center">Costumer's info</h2>
@@ -60,7 +60,7 @@
                 </table>
               </div>
               <div class="modal-footer">
-                <td><button class="btn btn-success btn-lg" (click) = "onPickUpCartClicked(job.cartId); modal.dismiss('Cross click')">Take it!</button></td>
+                <button class="btn btn-success btn-lg btn-block" (click) = "onPickUpCartClicked(job.cartId); modal.dismiss('Cross click')"><i class="fas fa-check-square"></i> Take it!</button>
               </div>
             </ng-template>
             <hr>

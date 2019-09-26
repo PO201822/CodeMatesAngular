@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req.clone({
         setHeaders: {
           'Content-Type' : 'application/json; charset=utf-8',
-          'Accept'       : 'application/json',
+          'Accept'       : 'text/html, application/json',
           'Authorization': `Bearer ${this.cookie.get('token')}`,
         }
       }));

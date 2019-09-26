@@ -1,84 +1,55 @@
-<div  class="sticky-top mb-5" [ngSwitch]="role">
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngSwitchCase="'ROLE_USER'">
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i> Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/profile" routerLinkActive="active"><i class="far fa-address-card"></i> Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/restaurants" routerLinkActive="active"><i class="fas fa-utensils"></i> Restaurants</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/myCart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i>  My Cart</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/orders" routerLinkActive="active"><i class="fas fa-box-open"></i> Orders</a>
-      </li>
-    </ul>
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <button class="btn btn-light btn-lg" routerLink="" routerLinkActive="active"
-          (click)="onLogoutClicked()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="sticky-top mb-5" [ngSwitch]="role">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5" *ngSwitchCase="'ROLE_USER'">
+    <div class="navbar-collapse collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/profile" routerLinkActive="active"><i class="far fa-address-card"></i> Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/restaurants" routerLinkActive="active"><i class="fas fa-utensils"></i> Restaurants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/myCart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/orders" routerLinkActive="active"><i class="fas fa-box-open"></i> Orders</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-light btn-lg" routerLink="" routerLinkActive="active" (click)="onLogoutClicked()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5"*ngSwitchCase="'ROLE_ADMIN'">
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i> Home admin</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/profile" routerLinkActive="active"><i class="far fa-address-card"></i> Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/restaurants" routerLinkActive="active"><i class="fas fa-utensils"></i> Restaurants</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/myCart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i>  My Cart</a>
-    </li>
-    </ul>
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <button class="btn btn-light btn-lg" routerLink="" routerLinkActive="active"
-          (click)="onLogoutClicked()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
-      </li>
-    </ul>
-  </div>
-</nav>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5" *ngSwitchCase="'ROLE_ADMIN'">
+  </nav>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-5"*ngSwitchCase="'ROLE_COURIER'">
-  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/jobs" routerLinkActive="active"><i class="fas fa-box"> </i> Costumer's Orders</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/own" routerLinkActive="active"><i class="fas fa-truck"></i> Current Jobs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-5" routerLink="/courier/complete" routerLinkActive="active"><i class="fas fa-check-circle"></i> Completed Jobs</a>
-      </li>
-    </ul>
-  </div>
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <button class="btn btn-light btn-lg" routerLink="" routerLinkActive="active"
-          (click)="onLogoutClicked()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
-      </li>
-    </ul>
-  </div>
-  
-</nav>
-
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-5" *ngSwitchCase="'ROLE_COURIER'">
+    <div class="navbar-collapse collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/courier/jobs" routerLinkActive="active"><i class="fas fa-box"> </i> Costumer's Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/courier/own" routerLinkActive="active"><i class="fas fa-truck"></i> Current Jobs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mr-5" routerLink="/courier/complete" routerLinkActive="active"><i class="fas fa-check-circle"></i> Completed Jobs</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-light btn-lg" routerLink="" routerLinkActive="active" (click)="onLogoutClicked()"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </div>
