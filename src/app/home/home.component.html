@@ -1,25 +1,40 @@
-<img src="assets/logo_small.png" class="rounded mx-auto d-block" width="50%" height="100%">
-<br>
-<br>
-<div class="container-fluid text-center text-white mt-5">
-    <h1>What we offer</h1>
-    <br>
-    <div class="row mt-5">
-        <div class="col-sm-4">
-            <i class="fas fa-hamburger fa-4x"></i>
-            <h3 class="mt-3">WIDE SELECTION</h3>
-            <p>Wide selection of desserts, appetizers and entrees.</p>
-        </div>
-        <div class="col-sm-4">
-            <i class="fab fa-paypal fa-4x"></i>
-            <h3 class="mt-3">EASY PAYMENT</h3>
-            <p>With the help of PayPal.</p>
-        </div>
-        <div class="col-sm-4">
-            <i class="fas fa-paper-plane fa-4x"></i>
-            <h3 class="mt-3">FAST DELIVERY</h3>
-            <p>Couriers are waiting for your orders. </p>
+<div [ngSwitch]="role">
+    <div *ngSwitchCase="'ROLE_USER'">
+        <img src="assets/logo_small.png" class="rounded mx-auto d-block" width="800px" height="300">
+        <br>
+        <br>
+        <div class="container-fluid text-center text-white mt-5">
+            <h1>What we offer</h1>
+            <br>
+            <div class="row mt-5">
+                <div class="col-sm-4">
+                    <i class="fas fa-hamburger fa-4x"></i>
+                    <h3 class="mt-3">WIDE SELECTION</h3>
+                    <p>Wide selection of desserts, appetizers and entrees.</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fab fa-paypal fa-4x"></i>
+                    <h3 class="mt-3">EASY PAYMENT</h3>
+                    <p>With the help of PayPal.</p>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fas fa-paper-plane fa-4x"></i>
+                    <h3 class="mt-3">FAST DELIVERY</h3>
+                    <p>Couriers are waiting for your orders. </p>
+                </div>
+            </div>
         </div>
     </div>
-    <br><br>
+
+    <div *ngSwitchCase="'ROLE_COURIER'">
+        <img src="assets/logo_courier.png" class="rounded mx-auto d-block" width="800px" height="350">
+        <br>
+        <br>
+        <h1 class=" text-center text-white mt-5">Welcome courier!</h1>
+    </div>
+
+    <div *ngSwitchCase="'ROLE_ADMIN'">
+        <h1 class=" text-center text-white mt-5">Welcome Admin!</h1>
+    </div>
+    
 </div>
