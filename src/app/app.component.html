@@ -1,3 +1,4 @@
 <app-navigation-bar *ngIf = "!isCookieSet()"></app-navigation-bar>
 <router-outlet></router-outlet>
 <app-message *ngIf="messageService.isMessageShown"></app-message>
+<ngx-spinner bdColor="rgba(0,0,0,0.0)" size="large" color="#fff" type="line-scale"></ngx-spinner>
