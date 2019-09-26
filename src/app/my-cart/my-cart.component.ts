@@ -5,6 +5,7 @@ import { MessageService } from '../services/message.service';
 import { CartService } from '../services/cart.service';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-my-cart',
@@ -23,10 +24,12 @@ export class MyCartComponent implements OnInit {
     private messageService: MessageService,
     private cartService: CartService,
     private errorHandlerService: ErrorHandlerService,
-    private zone: NgZone
+    private zone: NgZone,
+    private spinner : NgxSpinnerService
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.getMyCart();
     Promise.resolve(null).then(() => this.messageService.hideMessage());
   }
@@ -55,6 +58,7 @@ export class MyCartComponent implements OnInit {
   }
 
   onMyCartResponse(res) {
+    this.spinner.hide();
     this.cartItems = res;
     if (this.cartItems == null) {
       this.messageService.showMessage("Your cart is empty!", "info");
@@ -138,9 +142,11 @@ export class MyCartComponent implements OnInit {
         actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
+        this.spinner.show();
       },
       onClientAuthorization: (data) => {
         this.zone.run(() => {
+          this.spinner.hide();
           this.onCheckoutCartClicked();
         });
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
