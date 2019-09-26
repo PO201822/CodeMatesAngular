@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 const appRoutes: Routes = [
@@ -61,8 +62,7 @@ const appRoutes: Routes = [
     CourierJobsComponent,
     CourierOwnOrdersComponent,
     UnauthorizedComponent,
-    CompletedJobsComponent,
-  
+    CompletedJobsComponent,  
   ],
   imports: [
     RouterModule.forRoot(
@@ -74,7 +74,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    NgxSpinnerModule
   ],
   providers: [
     CookieService, 
