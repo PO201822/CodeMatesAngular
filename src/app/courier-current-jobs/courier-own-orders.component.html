@@ -6,8 +6,9 @@
       <tr class="font-22">
         <th scope="col">Order ID</th>
         <th scope="col">Order Date</th>
-        <th scope="col">Details</th>
         <th scope="col">Status</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -21,12 +22,13 @@
           {{ job.jobsDto.date[4] }}: 
           {{ job.jobsDto.date[5] }}
         </td>
-        <td><button (click) = "open(content)">Details</button></td>
+        <td>Delivering</td>
+        <td><button class="btn btn-primary btn-lg" (click) = "open(content)"><i class="fas fa-info-circle"></i> Details</button></td>
           <table class="container table-borderless">
             <td><ng-template #content let-modal>           
               <div class="modal-header">
                 <h2 class="modal-title center" id="modal-basic-title ">#{{job.cartId}} Cart's order details  </h2>
-                <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')">Close</button>
+                <button class="btn btn-secondary btn-lg" aria-label="Close" (click)="modal.dismiss('Cross click')"><i class="fas fa-times"></i> Close</button>
               </div>
               <div class="modal-body">
                 <h2 class=" center mb-3" id="modal-basic-title center">Costumer's info</h2>
@@ -53,13 +55,11 @@
                   </tbody>
                 </table>
               </div>
-              <div class="modal-footer">
-              </div>
             </ng-template>
             <hr>
           </td>
-          <td><button class="btn btn-success btn-lg" (click) = "onJobCompleteClicked(job.orderId); ">Take it!</button></td>
-          <td><button class="btn btn-danger btn-lg" (click) = "onDissmissJobClicked(job.orderId); ">Dismiss!</button></td>
+          <td><button class="btn btn-success btn-lg" (click) = "onJobCompleteClicked(job.orderId); "><i class="fas fa-check-square"></i> Complete</button></td>
+          <td><button class="btn btn-danger btn-lg" (click) = "onDissmissJobClicked(job.orderId); "><i class="fas fa-window-close"></i> Drop</button></td>
         </table>
   </tbody>
 </table>
