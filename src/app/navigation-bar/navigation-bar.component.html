@@ -1,5 +1,5 @@
 <div class="sticky-top mb-5" [ngSwitch]="role">
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-5" *ngSwitchCase="'ROLE_USER'">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5" *ngSwitchCase="'ROLE_USER'">
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -12,10 +12,10 @@
           <a class="nav-link mr-5" routerLink="/restaurants" routerLinkActive="active"><i class="fas fa-utensils"></i> Restaurants</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mr-5" routerLink="/myCart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i> My Cart</a>
+          <a class="nav-link mr-5" routerLink="/myCart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i> Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mr-5" routerLink="/orders" routerLinkActive="active"><i class="fas fa-shopping-cart"></i> Orders</a>
+          <a class="nav-link mr-5" routerLink="/orders" routerLinkActive="active"><i class="fas fa-box-open"></i> Orders</a>
         </li>
       </ul>
       <ul class="navbar-nav">
