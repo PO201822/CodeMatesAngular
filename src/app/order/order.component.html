@@ -1,1 +1,106 @@
-<p>order works!</p>
+<br><br>
+<div class="container" *ngIf="orders != null">
+    <table class="table table-striped">
+        <thead>
+            <tr class="font-22">
+                <th scope="col">Cart ID</th>
+                <th scope="col">Order date</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders" class="font-20">
+                <td>{{ order.cart.id }}</td>
+                <td>
+                    {{ order.cart.checkout_date[0] }}.
+                    {{ order.cart.checkout_date[1] }}.
+                    {{ order.cart.checkout_date[2] }} @
+                    {{ order.cart.checkout_date[3] }}:
+                    {{ order.cart.checkout_date[4] }}:
+                    {{ order.cart.checkout_date[5] }}
+                </td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.total }} Ft</td>
+                <td>{{ order.status }}</td>
+
+                <td><button class="btn btn-primary btn-lg" (click)="open(content)"><i class="fas fa-info-circle"></i>
+                        Details</button></td>
+                <table class="container table-borderless">
+                    <td>
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                                <h2 class="modal-title center" id="modal-basic-title ">#{{order.cart.id}} Cart's order
+                                    details </h2>
+                                <button class="btn btn-secondary btn-lg" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')"><i class="fas fa-window-close"></i>
+                                    Close</button>
+                            </div>
+                            <div class="modal-body">
+                                <h2 class=" center mb-3" id="modal-basic-title center">Costumer's info</h2>
+                                <p class="ml-3">Name : {{ order.costumer.name }}</p>
+                                <p class="ml-3">Location : {{ order.costumer.location }}</p>
+                                <p class="ml-3">Address : {{ order.costumer.address }}</p>
+                                <h2 class=" center mb-5" id="modal-basic-title center">Ordered products</h2>
+                                <table class="container">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <h4 class="text-black"><b>Restaurant's name</b> </h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4 class="text-black"><b>Restaurant's location </b></h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4 class="text-black"><b>Product</b></h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4 class="text-black"><b>Price</b></h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4 class="text-black"><b>Quantity</b></h4>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let cartItem of order.cartItems">
+                                            <td class="text-black">
+                                                <p class="text-black">{{ cartItem.product.restaurants[0].name }}</p>
+                                            </td>
+                                            <td class="text-black">
+                                                <p class="text-black">{{ cartItem.product.restaurants[0].location }}</p>
+                                            </td>
+                                            <td class="text-black">
+                                                <p class="text-black">{{ cartItem.product.name }}</p>
+                                            </td>
+                                            <td class="text-black">
+                                                <p class="text-black">{{ cartItem.product.price }} Ft</p>
+                                            </td>
+                                            <td class="text-black">
+                                                <p class="text-black">{{ cartItem.quantity }}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div *ngIf="order.complete">
+                                <h2 class="center mt-4">Completion Date : </h2>
+                                <h2 class="center mb-3">
+                                    {{order.completionDate[0]}}.
+                                    {{order.completionDate[1]}}.
+                                    {{order.completionDate[2]}} @
+                                    {{order.completionDate[3]}}:
+                                    {{order.completionDate[4]}}:
+                                    {{order.completionDate[5]}}
+                                </h2>
+                            </div>
+                        </ng-template>
+                        <hr>
+                    </td>
+                </table>
+            </tr>
+        </tbody>
+    </table>
+</div>
