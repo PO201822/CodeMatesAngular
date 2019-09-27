@@ -34,8 +34,10 @@ export class OrderComponent implements OnInit {
   }
 
   setOrders(orders){
-    console.log(orders);
     this.orders = orders;
+    if (this.orders == null) {
+      this.messageService.showMessage("You don't have any orders currently!", "info");
+    }
   }
 
   open(content) {
