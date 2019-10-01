@@ -22,8 +22,8 @@
                     {{ order.cart.checkout_date[4] }}:
                     {{ order.cart.checkout_date[5] }}
                 </td>
-                <td>{{ order.quantity }}</td>
-                <td>{{ order.total }} Ft</td>
+                <td>{{ order.cartItemDetail.quantity }}</td>
+                <td>{{ order.cartItemDetail.totalPrice }} Ft</td>
                 <td>{{ order.status }}</td>
 
                 <td><button class="btn btn-primary btn-lg" (click)="open(content)"><i class="fas fa-info-circle"></i>
