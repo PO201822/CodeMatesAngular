@@ -25,6 +25,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { SocialLoginModule } from 'angularx-social-login';
+import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
+
 
 
 const appRoutes: Routes = [
@@ -44,6 +47,25 @@ const appRoutes: Routes = [
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
 ];
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('517604766414-uhdttkklln55k821ov4jamt73pv8u83i.apps.googleusercontent.com')
+  },
+  // {
+  //   id: FacebookLoginProvider.PROVIDER_ID,
+  //   provider: new FacebookLoginProvider('561602290896109')
+  // },
+  // {
+  //   id: LinkedInLoginProvider.PROVIDER_ID,
+  //   provider: new LinkedInLoginProvider("78iqy5cu2e1fgr")
+  // }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -75,7 +97,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule,
     NgxPayPalModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    SocialLoginModule
   ],
   providers: [
     CookieService, 
@@ -84,6 +107,10 @@ const appRoutes: Routes = [
       useClass: AuthInterceptor,
       multi   : true,
     },
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [AppComponent]
 })
