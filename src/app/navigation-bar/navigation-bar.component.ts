@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
 import { ErrorHandlerService } from '../services/error-handler.service';
+import { AuthService } from 'angularx-social-login';
+
+
 
 @Component({
   selector: 'app-navigation-bar',
@@ -17,7 +20,8 @@ export class NavigationBarComponent implements OnInit {
     private http: HttpClient,
     private cookie: CookieService,
     private messageService : MessageService,
-    private errorHandlerService : ErrorHandlerService
+    private errorHandlerService : ErrorHandlerService,
+    private authService: AuthService
     ) { }
 
   ngOnInit() {
@@ -27,6 +31,12 @@ export class NavigationBarComponent implements OnInit {
   onLogoutClicked() {
     this.cookie.deleteAll();
     this.messageService.hideMessage();
+    this.googleSignOut();
+  }
+
+  googleSignOut(): void {
+    this.authService.signOut();
+    
   }
 
   getUserRole(){
