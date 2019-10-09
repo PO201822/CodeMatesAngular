@@ -1,0 +1,54 @@
+<div class="container mt-5" *ngIf="restaurant != undefined">
+    <div class="card mb-4 text-black bg-light mt-3">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <img width="auto" height="auto" src="{{restaurant.picture}}"
+                    onerror="this.src='assets/restaurant-logos/default.png';" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2>{{restaurant.name}}</h2>
+                    <p class="card-text text-black">{{restaurant.description}}</p>
+                    <p class="card-text text-black"><i class="fa fa-map-marker fa-sm"></i> {{restaurant.location}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-utensils fa-lg"></i></span>
+            </div>
+            <input type="text" class="form-control" id="name" [(ngModel)]="restaurant.name" required
+                [ngModelOptions]="{standalone: true}" placeholder="name" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker fa-lg"></i></span>
+            </div>
+            <input type="text" class="form-control" id="location" [(ngModel)]="restaurant.location" required
+                [ngModelOptions]="{standalone: true}" placeholder="location" />
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-file-alt fa-lg"></i></span>
+            </div>
+            <textarea class="form-control font-22" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="restaurant.description" rows="2"></textarea>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-images fa-lg"></i></span>
+            </div>
+            <textarea class="form-control font-22" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="restaurant.picture" rows="2"></textarea>
+        </div>
+        <button type="button" class="btn btn-secondary mr-3 btn-lg" (click)="getRestaurant()">
+            <i class="fas fa-history"></i> Cancel
+        </button>
+        <button type="submit" class="btn btn-success mr-3 btn-lg" (click)="updateRestaurant()">
+            <i class="fas fa-save"></i> Save 
+        </button>
+
+    </form>
+</div>
