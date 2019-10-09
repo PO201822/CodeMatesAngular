@@ -6,6 +6,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from '../services/message.service';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 
 
 @Component({
@@ -14,6 +17,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginFormComponent implements OnInit {
   model : any = {}
+  user: SocialUser;
+
 
   constructor(
     private http : HttpClient,
@@ -21,15 +26,45 @@ export class LoginFormComponent implements OnInit {
     private cookie: CookieService,
     private messageService : MessageService,
     private errorHandlerService : ErrorHandlerService,
-    private spinner : NgxSpinnerService
+    private spinner : NgxSpinnerService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
     Promise.resolve(null).then(() => this.messageService.hideMessage());
     if(this.cookie.get('token').length != 0){
       this.router.navigate(['home']);
-    }    
+    }
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(user);
+    });    
   }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => this.sendGoogleUserInfo(x));
+  }
+
+  sendGoogleUserInfo(x){
+    let url = environment.apiUrl + '/auth/googlesignin';
+    this.http.post<any>(url, {
+      email : x.email,
+      id : x.id
+  }).subscribe(res => this.onSuccessfulLogin(res),
+      error => this.errorHandlerService.handleError(error)); {
+    };
+
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(x => console.log(x));
+  }
+
+  signInWithLinkedIn(): void {
+    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(x => console.log(x));
+  }
+
+
 
   onRegisterClicked(){
     this.router.navigate(['registration']);
@@ -46,6 +81,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSuccessfulLogin(res){
+    console.log("pls")
     this.messageService.hideMessage();
     this.cookie.set('token', res.token);
     this.spinner.hide();
