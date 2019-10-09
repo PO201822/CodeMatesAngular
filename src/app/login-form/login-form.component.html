@@ -1,6 +1,4 @@
-<br>
-<br>
-<div class="container ">
+<div class="container mt-5">
 
   <h1>Login Form</h1>
   <form>
@@ -20,11 +18,8 @@
         [ngModelOptions]="{standalone: true}" placeholder="**********">
     </div>
     <button type="button" class="btn btn-success mr-3 btn-lg" (click)="onSubmit()"><i class="fas fa-user"></i> Log In</button>
-
-    <button type="button" class="btn btn-primary btn-lg" (click)="onRegisterClicked()"><i class="fas fa-user-plus"></i> Registration</button>
+    <button type="button" class="btn btn-secondary mr-3 btn-lg" (click)="onRegisterClicked()"><i class="fas fa-user-plus"></i> Registration</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="signInWithGoogle()"><i class="fab fa-google"></i> Sign in with Google</button>
   </form>
 
-</div>
-<div class="card-block">
-  <button (click)="signInWithGoogle()"><i class="fab fa-google"></i></button>
 </div>
