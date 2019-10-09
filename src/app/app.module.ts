@@ -25,11 +25,12 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AdminRestaurantAdditionComponent } from './admin-restaurant-addition/admin-restaurant-addition.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
-  { path: 'home', component: HomeComponent }, 
+  { path: 'home', component: HomeComponent },
   { path: 'registration', component: RegistrationComponent }, 
   { path: 'profile', component: ProfileComponent }, 
   { path: 'restaurants', component: RestaurantsComponent }, 
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'courier/complete', component: CompletedJobsComponent},
   { path: 'courier/complete', component: CompletedJobsComponent},
   { path: 'unauthorized', component: UnauthorizedComponent},
+  { path: 'admin/restaurants', component: AdminRestaurantAdditionComponent},
   { path: '**', component: PageNotFoundComponent }, // Default for unknown routing (404 Page not found)
 
 ];
@@ -62,7 +64,8 @@ const appRoutes: Routes = [
     CourierJobsComponent,
     CourierOwnOrdersComponent,
     UnauthorizedComponent,
-    CompletedJobsComponent,  
+    CompletedJobsComponent, 
+    AdminRestaurantAdditionComponent, 
   ],
   imports: [
     RouterModule.forRoot(
