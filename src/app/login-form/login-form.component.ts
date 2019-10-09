@@ -8,7 +8,8 @@ import { ErrorHandlerService } from '../services/error-handler.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class LoginFormComponent implements OnInit {
     private messageService : MessageService,
     private errorHandlerService : ErrorHandlerService,
     private spinner : NgxSpinnerService,
-    private authService: AuthService
+    private authService : AuthService,
+    private userService : UserService
   ) { }
 
   ngOnInit() {
@@ -37,34 +39,34 @@ export class LoginFormComponent implements OnInit {
     }
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      console.log(user);
     });    
   }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(x => this.sendGoogleUserInfo(x));
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(res => this.sendGoogleUserInfo(res));
   }
 
-  sendGoogleUserInfo(x){
+  sendGoogleUserInfo(user){
+    this.spinner.show();
     let url = environment.apiUrl + '/auth/googlesignin';
     this.http.post<any>(url, {
-      email : x.email,
-      id : x.id
-  }).subscribe(res => this.onSuccessfulLogin(res),
+      email : user.email,
+      id : user.id
+  }).subscribe(res => this.onSuccessfullLoginResponse(res),
       error => this.errorHandlerService.handleError(error)); {
     };
 
   }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(x => console.log(x));
+  onSuccessfullLoginResponse(res){
+    this.spinner.show();
+    let url = environment.apiUrl + '/auth/signin';
+    this.http.post<any>(url, {
+      name: res.name,
+      password: res.password}).subscribe(res => this.onSuccessfulLogin(res),
+      error => this.errorHandlerService.handleError(error)); {
+    };
   }
-
-  signInWithLinkedIn(): void {
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID).then(x => console.log(x));
-  }
-
-
 
   onRegisterClicked(){
     this.router.navigate(['registration']);
@@ -81,7 +83,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSuccessfulLogin(res){
-    console.log("pls")
     this.messageService.hideMessage();
     this.cookie.set('token', res.token);
     this.spinner.hide();
