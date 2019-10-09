@@ -1,0 +1,54 @@
+<h1 class="center mt-5 mb-5">Restaurants</h1>
+<div class="container" *ngIf="restaurants != null">
+    <table class="table table-striped">
+        <thead class="font-25">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="font-25">
+            <tr *ngFor="let restaurant of restaurants; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{ restaurant.name }}</td>
+                <td>
+                    <p class="font-25">
+                        {{ restaurant.location }}
+                    </p>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-lg" routerLink="/admin/restaurant/{{ restaurant.id }}" >
+                        <i class="fas fa-edit"></i> Edit 
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-lg" (click)="removeRestaurant(restaurant.id)">
+                        <i class="fas fa-times-circle"></i> Remove
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>{{ restaurantCount }}</b> 
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="name" required
+                    [ngModelOptions]="{standalone: true}"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="location" [(ngModel)]="location" required
+                    [ngModelOptions]="{standalone: true}"/>
+                </td>
+                <td colspan="2">
+                    <button class="btn btn-success btn-lg" (click)="createRestaurant()">
+                        <i class="fas fa-plus-square"></i> Create Restaurant
+                    </button>
+                </td>
+            </tr>
+           
+        </tbody>
+    </table>
+</div>
