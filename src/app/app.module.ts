@@ -28,8 +28,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { AdminRestaurantAdditionComponent } from './admin-restaurant-addition/admin-restaurant-addition.component';
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
-import { config } from 'rxjs';
-
+import { RestaurantEditorComponent } from './admin-restaurant-editor/restaurant-editor.component';
 
 const appRoutes: Routes = [ 
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
@@ -38,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent }, 
   { path: 'restaurants', component: RestaurantsComponent }, 
   { path: 'restaurant/:id', component: RestaurantMenuComponent },
+  { path: 'admin/restaurant/:id', component: RestaurantEditorComponent },
   { path: 'orders', component: OrderComponent},
   { path: 'myCart', component: MyCartComponent}, 
   { path: 'courier/jobs', component: CourierJobsComponent},
@@ -78,7 +78,8 @@ export function provideConfig() {
     CourierOwnOrdersComponent,
     UnauthorizedComponent,
     CompletedJobsComponent, 
-    AdminRestaurantAdditionComponent, 
+    AdminRestaurantAdditionComponent,
+    RestaurantEditorComponent
   ],
   imports: [
     RouterModule.forRoot(
