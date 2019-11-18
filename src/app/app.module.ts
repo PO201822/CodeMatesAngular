@@ -25,10 +25,10 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CompletedJobsComponent } from './courier-completed-jobs/completed-jobs.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { AdminRestaurantAdditionComponent } from './admin-restaurant-addition/admin-restaurant-addition.component';
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
 import { RestaurantEditorComponent } from './admin-restaurant-editor/restaurant-editor.component';
+import { AdminRestaurantAdditionComponent } from './admin-restaurant-manager/admin-restaurant-addition.component';
 
 const appRoutes: Routes = [ 
   { path: '', component: LoginFormComponent }, // Default for localhost:8080 (Login)
