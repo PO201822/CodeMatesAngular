@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../services/message.service';
@@ -20,7 +19,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService,
     private userService: UserService,
     private messageService: MessageService,
     private errorHandlerService : ErrorHandlerService

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from '../services/user.service';
 import { MessageService } from '../services/message.service';
@@ -23,7 +22,6 @@ export class AdminRestaurantAdditionComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private cookie: CookieService,
     private userService: UserService,
     private messageService: MessageService,
     private errorHandlerService: ErrorHandlerService
@@ -54,12 +52,6 @@ export class AdminRestaurantAdditionComponent implements OnInit {
       error => this.errorHandlerService.handleError(error)); { };
   }
 
-  // onDeleteItemClicked(productId) {
-  //   let url = environment.apiUrl + '/deleteItem';
-  //   let params = new HttpParams().set("productId", productId);
-  //   this.http.delete(url, { params: params }).subscribe(res => this.getMyCart(),
-  //     error => this.errorHandlerService.handleError(error)); { };
-  // }
 
   createRestaurant() {
     if (!this.userService.isInputValid([this.name, this.location])) {

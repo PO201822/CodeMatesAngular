@@ -9,7 +9,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -29,7 +28,6 @@ export class LoginFormComponent implements OnInit {
     private errorHandlerService : ErrorHandlerService,
     private spinner : NgxSpinnerService,
     private authService : AuthService,
-    private userService : UserService
   ) { }
 
   ngOnInit() {
